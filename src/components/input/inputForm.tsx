@@ -6,108 +6,153 @@ import { useData } from '../../context/DataContext';
 const ChargingInputForm: React.FC = () => {
   const { setData, toggleModal } = useData();
   const [formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const isFormValid = !Object.values(errors).some((err) => err);
 
+  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    validateForm(name, parseInt(e.target.value, 10));
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    const { name, value } = e.target;
+    const numericValue = parseFloat(value);
+    const error = validateForm(name, numericValue);
+    setErrors({ ...errors, [name]: error });
   };
 
   const handleSubmitData = () => {
-    // This update the Context
+    if (Object.values(errors).some((err) => err)) {
+      alert('Please fix the validation errors before submitting.');
+      return;
+    }
+
     toggleModal();
     setData(formData);
   };
 
   return (
-    <div className="p-4 h-full max-w-md mx-auto bg-gray-100 text-gray-500">
-      <h1 className="text-l font-bold mb-4">Simulation Parameters</h1>
-      {/* CHARGE POINT */}
-      <div className="mb-4">
+    <div className="p-6 max-w-md mx-auto bg-gray-300 rounded-lg shadow-md text-gray-700">
+      <h1 className="text-lg font-bold mb-6 text-center text-gray-600">
+        Simulation Parameters
+      </h1>
+
+      <div className="mb-0">
         <label
-          className="block text-gray-400 text-sm font-sans font-medium mb-2"
           htmlFor="chargePoints"
+          className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Charge Points: {formData.chargePoints}
+          Charge Points:
         </label>
         <input
-          type="range"
+          type="number"
           id="chargePoints"
           name="chargePoints"
           min="1"
           max="20"
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           value={formData.chargePoints}
           onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+            errors.chargePoints ? 'mb-1' : 'mb-5'
+          }`}
         />
+        {errors.chargePoints && (
+          <p className="text-red-400 text-xs border-l-2 border-gray-300">
+            {errors.chargePoints}
+          </p>
+        )}
       </div>
-      {/* PROBABILITY */}
-      <div className="mb-4">
+
+      <div className="mb-0">
         <label
-          className="block text-gray-400 text-sm font-sans font-medium mb-2"
           htmlFor="arrivalProbability"
+          className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Arrival Probability Multiplier: {formData.arrivalProbability}%
+          Arrival Probability Multiplier (%):
         </label>
         <input
-          type="range"
+          type="number"
           id="arrivalProbability"
           name="arrivalProbability"
           min="20"
           max="200"
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           value={formData.arrivalProbability}
           onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+            errors.arrivalProbability ? 'mb-1' : 'mb-5'
+          }`}
         />
+        {errors.arrivalProbability && (
+          <p className="text-red-400 text-xs border-l-2 border-gray-300">
+            {errors.arrivalProbability}
+          </p>
+        )}
       </div>
-      {/* CONSUMPTION */}
-      <div className="mb-4">
+
+      <div className="mb-0">
         <label
-          className="block text-gray-400 text-sm font-sans font-medium mb-2"
           htmlFor="carConsumption"
+          className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Car Consumption: {formData.carConsumption}kWh
+          Car Consumption (kWh):
         </label>
         <input
-          type="range"
+          type="number"
           id="carConsumption"
           name="carConsumption"
           min="12.0"
           max="40.0"
           step="0.5"
-          defaultValue="18.0"
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           value={formData.carConsumption}
           onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+            errors.carConsumption ? 'mb-1' : 'mb-5'
+          }`}
         />
+        {errors.carConsumption && (
+          <p className="text-red-400 text-xs border-l-2 border-gray-300">
+            {errors.carConsumption}
+          </p>
+        )}
       </div>
-      {/* CHARGING POWER */}
-      <div className="mb-4">
+
+      <div className="mb-0">
         <label
-          className="block text-gray-400 text-sm font-sans font-medium mb-2"
           htmlFor="chargingPower"
+          className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Charging Power: {formData.chargingPower}kW
+          Charging Power (kW):
         </label>
         <input
-          type="range"
+          type="number"
           id="chargingPower"
           name="chargingPower"
           min="1"
           max="11"
-          defaultValue="11"
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          step="0.5"
           value={formData.chargingPower}
           onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
+            errors.chargingPower ? 'mb-0' : 'mb-5'
+          }`}
         />
+        {errors.chargingPower && (
+          <p className="text-red-400 text-xs mt-1 border-l-2 border-gray-300">
+            {errors.chargingPower}
+          </p>
+        )}
       </div>
-
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full"
         onClick={handleSubmitData}
+        className={`w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-1 ${
+          !isFormValid ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+        disabled={!isFormValid}
       >
         Submit
       </button>

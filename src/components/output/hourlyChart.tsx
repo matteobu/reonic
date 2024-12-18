@@ -1,65 +1,175 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  BarChart,
+  Bar,
 } from 'recharts';
+import ComponentHeader from './componentHeader';
+import { ChargePointData } from '../../utils/interfaces';
+import chargePointData from '../input/chargepoint_mock_data.json';
+import { CP_COLORS } from '../../utils/utils';
+import HourDetailsModal from './modals/HourDetailsModal';
+import FilterModal from './modals/FilterCPModal';
 
-const hourlyChargingData = [
-  { hour: '00:00', CP1: 10, CP2: 15, CP3: 5 },
-  { hour: '01:00', CP1: 20, CP2: 25, CP3: 10 },
-  { hour: '02:00', CP1: 15, CP2: 20, CP3: 8 },
-  { hour: '03:00', CP1: 18, CP2: 30, CP3: 12 },
-  { hour: '04:00', CP1: 12, CP2: 18, CP3: 6 },
-  { hour: '05:00', CP1: 8, CP2: 12, CP3: 4 },
-  { hour: '06:00', CP1: 10, CP2: 15, CP3: 5 },
-  { hour: '07:00', CP1: 25, CP2: 30, CP3: 20 },
-  { hour: '08:00', CP1: 30, CP2: 40, CP3: 25 },
-  { hour: '09:00', CP1: 35, CP2: 45, CP3: 30 },
-  { hour: '10:00', CP1: 40, CP2: 50, CP3: 35 },
-  { hour: '11:00', CP1: 50, CP2: 55, CP3: 40 },
-  { hour: '12:00', CP1: 45, CP2: 50, CP3: 38 },
-  { hour: '13:00', CP1: 40, CP2: 48, CP3: 35 },
-  { hour: '14:00', CP1: 38, CP2: 46, CP3: 32 },
-  { hour: '15:00', CP1: 35, CP2: 40, CP3: 30 },
-  { hour: '16:00', CP1: 30, CP2: 38, CP3: 28 },
-  { hour: '17:00', CP1: 28, CP2: 36, CP3: 26 },
-  { hour: '18:00', CP1: 32, CP2: 40, CP3: 30 },
-  { hour: '19:00', CP1: 35, CP2: 42, CP3: 33 },
-  { hour: '20:00', CP1: 38, CP2: 44, CP3: 36 },
-  { hour: '21:00', CP1: 40, CP2: 48, CP3: 38 },
-  { hour: '22:00', CP1: 42, CP2: 50, CP3: 40 },
-  { hour: '23:00', CP1: 45, CP2: 52, CP3: 42 },
-];
+interface HourlyData {
+  hour: string;
+  [key: string]: number | string;
+}
 
 const HourlyChargingChart: React.FC = () => {
+  const mockedData: ChargePointData[] = chargePointData;
+  const [showHourModal, setShowHourModal] = useState(false);
+  const [selectedHour, setSelectedHour] = useState<string | null>(null);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [hourlyChargingData, setHourlyChargingData] = useState<HourlyData[]>(
+    []
+  );
+  const [activeCPs, setActiveCPs] = useState<string[]>(
+    mockedData.map((cp) => cp.id)
+  );
+
+  const handleDateChange = (newDate: string) => {
+    const filteredByDay = mockedData.map((cp) => {
+      const dayData = cp.dailyData.find((data) => data.day === newDate);
+      return {
+        id: cp.id,
+        day: dayData?.day,
+        totalEnergy: dayData?.totalEnergy,
+      };
+    });
+
+    const hours = Array.from(
+      { length: 24 },
+      (_, i) => `${i.toString().padStart(2, '0')}:00`
+    );
+
+    const hourlyChargingData: HourlyData[] = hours.map((hour: string) => {
+      const hourData: HourlyData = { hour };
+      filteredByDay.forEach((entry) => {
+        if (entry.totalEnergy !== undefined) {
+          const randomDistribution = distributeRandomly(entry.totalEnergy, 24);
+          hourData[entry.id] = Number(randomDistribution.shift()?.toFixed(2));
+        }
+      });
+      return hourData;
+    });
+
+    setHourlyChargingData(hourlyChargingData);
+  };
+
+  const toggleCP = (cpId: string) => {
+    setActiveCPs((prev) =>
+      prev.includes(cpId) ? prev.filter((id) => id !== cpId) : [...prev, cpId]
+    );
+  };
+
+  const filteredData = hourlyChargingData.map((data) => {
+    const filteredEntry: HourlyData = { hour: data.hour };
+    activeCPs.forEach((cpId) => {
+      if (data[cpId] !== undefined) {
+        filteredEntry[cpId] = data[cpId];
+      }
+    });
+    return filteredEntry;
+  });
+
   return (
-    <div className="w-full h-full">
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart
-          data={hourlyChargingData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="hour"
-            label={{ value: 'Hour', position: 'insideBottom', offset: -10 }}
-          />
-          <YAxis label={{ value: 'kW', angle: -90, position: 'insideLeft' }} />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="CP1" stroke="#8884d8" />
-          <Line type="monotone" dataKey="CP2" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="CP3" stroke="#ffc658" />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="flex flex-col w-full h-full">
+      <ComponentHeader name={'Hourly Chart'} onDateChange={handleDateChange}>
+        <>
+          <button
+            onClick={() => setShowHourModal(true)}
+            className="px-4 h-7 bg-gray-600 text-white rounded-md shadow"
+          >
+            Show Hour Details
+          </button>
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="px-4 h-7 bg-gray-600 text-white rounded-md shadow"
+          >
+            Filter Charge Points
+          </button>
+        </>
+      </ComponentHeader>
+
+      {showHourModal && (
+        <HourDetailsModal
+          selectedHour={selectedHour}
+          hourlyChargingData={hourlyChargingData}
+          setSelectedHour={setSelectedHour}
+          onClose={() => setShowHourModal(false)}
+        />
+      )}
+
+      {showFilterModal && (
+        <FilterModal
+          mockedData={mockedData}
+          activeCPs={activeCPs}
+          toggleCP={toggleCP}
+          onClose={() => setShowFilterModal(false)}
+        />
+      )}
+
+      <div className="w-full flex-1 p-4 bg-gray-50 rounded-lg shadow-md border border-gray-200 sm:h-[400px] md:h-[450px] lg:h-[500px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={filteredData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="hour" />
+            <YAxis
+              label={{ value: 'kW', angle: -90, position: 'insideLeft' }}
+            />
+            <Legend />
+            {activeCPs.map((cpId) => (
+              <Line
+                key={cpId}
+                type="monotone"
+                dataKey={cpId}
+                stroke={CP_COLORS[cpId] || '#000'}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="w-full flex-1 p-4 bg-gray-50 rounded-lg shadow-md border border-gray-200 sm:h-[350px] md:h-[400px] lg:h-[450px] mt-4">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={filteredData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="hour" />
+            <YAxis
+              label={{ value: 'kW', angle: -90, position: 'insideLeft' }}
+            />
+            <Legend />
+            {activeCPs.map((cpId) => (
+              <Bar
+                key={cpId}
+                dataKey={cpId}
+                stackId="a"
+                fill={CP_COLORS[cpId] || '#000'}
+              />
+            ))}
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
 
 export default HourlyChargingChart;
+
+const distributeRandomly = (total: number, parts: number): number[] => {
+  const values = Array.from({ length: parts }, () => Math.random());
+  const sum = values.reduce((acc, val) => acc + val, 0);
+  return values.map((val) => (val / sum) * total);
+};

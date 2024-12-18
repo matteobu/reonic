@@ -1,23 +1,59 @@
-// ChargePointBarChart
+interface DailyData {
+  day: string;
+  BULK: number;
+  FLOATING: number;
+  ABS: number;
+  totalEnergy: number;
+  events: number;
+  peakDemand: number;
+  errors: number;
+}
+
+interface WeeklySummary {
+  week: string;
+  totalEnergy: number;
+  events: number;
+  errors: number;
+}
+
+interface MonthlySummary {
+  month: string;
+  totalEnergy: number;
+  events: number;
+  errors: number;
+}
+
+interface AnnualSummary {
+  year: number;
+  totalEnergy: number;
+  events: number;
+  errors: number;
+}
+
+interface ChargePointData {
+  id: string;
+  pMax: number;
+  errors: number;
+  dailyData: DailyData[];
+  weeklySummary: WeeklySummary[];
+  monthlySummary: MonthlySummary[];
+  annualSummary: AnnualSummary[];
+}
+
 interface CustomLabelProps {
   x: number;
   y: number;
   width: number;
-  chargePoint: string;
   yieldValue: number;
   pMax: number;
   errors: number;
 }
 
-interface ChargePointData {
-  chargePoint: string;
-  BULK: number;
-  FLOATING: number;
-  ABS: number;
-  yield: number;
-  pMax: number;
-  errors: number;
-}
-
-// ChargePointBarChart
-export type { CustomLabelProps, ChargePointData };
+export type {
+  ChargePointData,
+  CustomLabelProps,
+  DailyData,
+  WeeklySummary,
+  MonthlySummary,
+  AnnualSummary,
+};

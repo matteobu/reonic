@@ -4,3 +4,4 @@ export const DEFAULT_INPUT_VALUES = {
   carConsumption: 18,
   chargingPower: 11,
 };
+

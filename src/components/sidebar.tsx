@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  FiEdit,
-  FiZap,
-  FiCalendar,
-  FiBatteryCharging,
-  FiClock,
-  FiBarChart,
-  FiSettings,
-} from 'react-icons/fi';
+import { FiEdit, FiZap, FiCalendar, FiClock, FiSettings } from 'react-icons/fi';
 import { useData } from '../context/DataContext';
 
 const Sidebar: React.FC = () => {
@@ -30,30 +22,15 @@ const Sidebar: React.FC = () => {
           className="text-gray-500 cursor-pointer"
           onClick={() => setActiveComponent('c1')}
         />
-        <FiCalendar
+        <FiClock
           size={20}
           className="text-gray-500 cursor-pointer"
           onClick={() => setActiveComponent('c2')}
         />
-        <FiBatteryCharging
+        <FiCalendar
           size={20}
           className="text-gray-500 cursor-pointer"
-          onClick={() => console.log('3. The total energy charged (in kWh)')}
-        />
-        <FiClock
-          size={20}
-          className="text-gray-500 cursor-pointer"
-          onClick={() =>
-            console.log(
-              '4. The number of charging events per year/month/week/day'
-            )
-          }
-        />
-        <FiBarChart
-          size={20}
-          className="text-gray-500 cursor-pointer"
-          onClick={() => console.log('5. The amount of charging ')}
-          title="The amount of charging"
+          onClick={() => setActiveComponent('c5')}
         />
       </div>
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
