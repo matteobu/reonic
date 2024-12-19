@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BarChart,
   Bar,
@@ -9,53 +9,75 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { ChargePointData } from '../../utils/interfaces';
-import TotalEnergyChart from './totalEnergyChart';
-import chargePointData from '../input/chargepoint_mock_data.json';
+import {
+  ChargePointData,
+  DailyDataKeys,
+} from '../../interfaces/outputs.interfaces';
+import chargePointData from '../../data/chargepoint_mock_data.json';
 import ComponentHeader from './componentHeader';
+import { useData } from '../../context/DataContext';
+import { getRandomArray } from '../../utils/utils';
+import TotalEnergyChart from './totalEnergyChart';
 
-type DailyDataKeys = 'BULK' | 'FLOATING' | 'ABS';
-
-const DailyChargingChart: React.FC = () => {
+const DailyChart: React.FC = () => {
+  const { chargePoints } = useData();
   const mockedData: ChargePointData[] = chargePointData;
+  const [modifiedData, setModifiedData] = useState<ChargePointData[]>(
+    chargePoints < 20 ? getRandomArray(mockedData, chargePoints) : mockedData
+  );
   const [selectedDate, setSelectedDate] = useState<string>('2024-01-01');
-  const [selectedCP] = useState<string>(mockedData[0]?.id || '');
-  const [dailyData, setDailyData] = useState<ChargePointData[]>([]);
-  const [cpData, setCpData] = useState<ChargePointData | undefined>(undefined);
   const [barChartData, setBarChartData] = useState<
     { id: string; ABS: number; FLOATING: number; BULK: number }[]
   >([]);
+  const [dailyData, setDailyData] = useState<ChargePointData[]>([]);
+  const [cpData, setCpData] = useState<ChargePointData | undefined>(undefined);
 
-  const handleDateChange = (newDate: string) => {
-    setSelectedDate(newDate);
-    const filteredByDay = mockedData.map((cp) => {
-      const dayData = cp.dailyData.find((data) => data.day === newDate);
+  useEffect(() => {
+    const newModifiedData =
+      chargePoints < 20 ? getRandomArray(mockedData, chargePoints) : mockedData;
+
+    setModifiedData(newModifiedData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chargePoints]);
+
+  useEffect(() => {
+    if (!modifiedData.length) return;
+
+    const filteredByDay = modifiedData.map((cp) => {
+      const dayData = cp.dailyData.find((data) => data.day === selectedDate);
       return { ...cp, dailyData: dayData ? [dayData] : [] };
     });
 
-    const selectedCPData = filteredByDay.find((cp) => cp.id === selectedCP);
     const barData = filteredByDay.map((data) => ({
       id: data.id,
-      ABS: data.dailyData[0].ABS,
-      FLOATING: data.dailyData[0].FLOATING,
-      BULK: data.dailyData[0].BULK,
+      ABS: data.dailyData[0]?.ABS || 0,
+      FLOATING: data.dailyData[0]?.FLOATING || 0,
+      BULK: data.dailyData[0]?.BULK || 0,
     }));
+
+    const selectedCPData = filteredByDay.find(
+      (cp) => cp.id === modifiedData[0]?.id
+    );
 
     setDailyData(filteredByDay);
     setBarChartData(barData);
     setCpData(selectedCPData);
+  }, [modifiedData, selectedDate]);
+
+  const handleDateChange = (newDate: string) => {
+    setSelectedDate(newDate);
   };
 
+  const validDailyDataKeys: DailyDataKeys[] = ['BULK', 'FLOATING', 'ABS'];
+  console.log(window.innerHeight);
   return (
-    <div className="flex flex-col w-full h-full">
-      {/* Component Header */}
+    <div className="flex flex-col w-full h-full ">
       <ComponentHeader
         name={'Daily Charging Chart'}
         onDateChange={handleDateChange}
+        isOnDateChange={true}
       />
-
-      {/* Bar Chart */}
-      <div className="w-full p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200 h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[60vh]">
+      <div className="w-[98%] p-4 m-2 bg-gray-100 rounded-lg shadow-md border border-gray-200 h-[45vh] ">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={barChartData}
@@ -75,21 +97,21 @@ const DailyChargingChart: React.FC = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Bottom Section */}
-      <div className="flex flex-col md:flex-row w-full mt-4 space-y-4 md:space-y-0 md:space-x-4">
-        {/* Aggregate Metrics */}
+      <div className="flex flex-col m-2 md:flex-row w-[99%] mt-4 space-y-4 md:space-y-0 md:space-x-4">
         <div className="flex-1 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200">
           <h3 className="text-center font-semibold mb-2 border-b border-gray-300">
             Aggregate Metrics
           </h3>
           {cpData && (
             <div className="space-y-2">
-              {(Object.keys(cpData.dailyData[0]) as DailyDataKeys[]).map(
+              {(Object.keys(cpData.dailyData[0] || {}) as DailyDataKeys[]).map(
                 (key) => (
                   <div key={key} className="flex justify-between">
                     <span className="text-gray-600">{`Total ${key}`}</span>
                     <span className="font-semibold">
-                      {cpData.dailyData[0][key]} kWh
+                      {validDailyDataKeys.includes(key as DailyDataKeys)
+                        ? `${cpData.dailyData[0]?.[key] || 0} kWh`
+                        : cpData.dailyData[0]?.[key] || 0}
                     </span>
                   </div>
                 )
@@ -98,20 +120,17 @@ const DailyChargingChart: React.FC = () => {
           )}
         </div>
 
-        {/* Total Energy Chart */}
         <div className="flex-1 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200">
           <TotalEnergyChart
             selectedDate={selectedDate}
             filteredData={dailyData}
           />
         </div>
-
-        {/* Error Logs */}
         <div className="flex-1 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200">
           <h3 className="text-center font-semibold mb-4 border-b border-gray-300">
             Error Logs
           </h3>
-          <div className="max-h-40 overflow-y-auto space-y-2">
+          <div className="max-h-[230px] overflow-y-auto space-y-2">
             {dailyData
               .filter((cp) => cp.errors > 0)
               .map((cp) => (
@@ -129,4 +148,4 @@ const DailyChargingChart: React.FC = () => {
   );
 };
 
-export default DailyChargingChart;
+export default DailyChart;

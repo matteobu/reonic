@@ -1,25 +1,19 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import { ChargePointData } from '../../utils/interfaces';
-
-interface TotalEnergyChartProps {
-  selectedDate: string;
-  filteredData: ChargePointData[];
-}
+import { TotalEnergyChartProps } from '../../interfaces/outputs.interfaces';
+import { TOTAL_ENERGY_PIE_COLORS as COLORS } from '../../utils/utils';
 
 const TotalEnergyChart: React.FC<TotalEnergyChartProps> = ({
   selectedDate,
   filteredData,
 }) => {
-  const COLORS = ['#9AA6B2', '#BCCCDC', '#D9EAFD', '#FFBB28', '#FF8042'];
-  console.log({ filteredData });
   const pieChartData = filteredData.map((data) => ({
     id: data.id,
     totalEnergy: data.dailyData[0].totalEnergy,
   }));
 
   return (
-    <div className="p-4">
+    <>
       <h2 className="text-center text-lg font-semibold mb-4 border-b border-gray-300">
         Total Energy Charged on {selectedDate}
       </h2>
@@ -51,7 +45,7 @@ const TotalEnergyChart: React.FC<TotalEnergyChartProps> = ({
           No data available for the selected date.
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,8 @@
-import { ChargePointData } from './interfaces';
+import {
+  ChargePointData,
+  ConsumptionDailyData,
+  SummaryData,
+} from '../interfaces/outputs.interfaces';
 
 // FORM VALIDATION
 export const validateForm = (name: string, value: number): string => {
@@ -24,29 +28,21 @@ export const validateForm = (name: string, value: number): string => {
   }
 };
 
-// HOURLY CHART
-// BAR COLORS PALETTE
-export const CP_COLORS: { [key: string]: string } = {
-  CP1: '#8884d8',
-  CP2: '#82ca9d',
-  CP3: '#ffc658',
-  CP4: '#d88484',
-  CP5: '#84d8d8',
-  CP6: '#a9ca82',
-  CP7: '#c658ff',
-  CP8: '#ff84d8',
-  CP9: '#82d8ff',
-  CP10: '#d8ca82',
-  CP11: '#ffb6c1',
-  CP12: '#8dd88c',
-  CP13: '#7b68ee',
-  CP14: '#e9967a',
-  CP15: '#32cd32',
-  CP16: '#6a5acd',
-  CP17: '#ff4500',
-  CP18: '#48d1cc',
-  CP19: '#daa520',
-  CP20: '#2f4f4f',
+// This functions is to reduce the number of CP is the user inputs a number lower than 20
+export const getRandomArray = (
+  originalArray: ChargePointData[],
+  desiredLength: number
+): ChargePointData[] => {
+  // Clone the original array to avoid modifying it
+  const newArray = [...originalArray];
+
+  // Remove random indices until the array length matches desiredLength
+  while (newArray.length > desiredLength) {
+    const randomIndex = Math.floor(Math.random() * newArray.length);
+    newArray.splice(randomIndex, 1); // Remove one element at the random index
+  }
+
+  return newArray;
 };
 
 // HEAT MAP CHART
@@ -87,31 +83,10 @@ export const aggregateDailyData = (mockedData: ChargePointData[]) => {
   );
 };
 
-interface DailyData {
-  day: string;
-  totalEnergy: number;
-  totalEvents: number;
-}
-
-interface SummaryData {
-  totalEnergyYear: number;
-  totalEventsYear: number;
-  totalEnergyMonth: number;
-  totalEventsMonth: number;
-  totalEnergyWeek: number;
-  totalEventsWeek: number;
-  totalEnergyDay: number;
-  totalEventsDay: number;
-  highestEnergyDay: DailyData;
-  lowestEnergyDay: DailyData;
-  highestEventsDay: DailyData;
-  lowestEventsDay: DailyData;
-}
-
 // CALCULATE THE SUMMARIES FOR THE COMPONENT
-export const calculateSummaries = (
-  aggregatedDailyEnergyEvents: DailyData[]
-): SummaryData => {
+export const calculateAllSummaries = (
+  aggregatedDailyEnergyEvents: ConsumptionDailyData[]
+): SummaryData[] => {
   const totalEnergyYear = aggregatedDailyEnergyEvents.reduce(
     (sum, entry) => sum + entry.totalEnergy,
     0
@@ -147,20 +122,111 @@ export const calculateSummaries = (
     entry.totalEvents < min.totalEvents ? entry : min
   );
 
-  return {
-    totalEnergyYear,
-    totalEventsYear,
-    totalEnergyMonth,
-    totalEventsMonth,
-    totalEnergyWeek,
-    totalEventsWeek,
-    totalEnergyDay,
-    totalEventsDay,
-    highestEnergyDay,
-    lowestEnergyDay,
-    highestEventsDay,
-    lowestEventsDay,
-  };
+  const monthlyMap = new Map<string, number>();
+  const weeklyMap = new Map<string, number>();
+
+  aggregatedDailyEnergyEvents.forEach((entry) => {
+    const month = new Date(entry.day).toLocaleString('en-US', {
+      month: 'short',
+      year: 'numeric',
+    });
+    const week = `${new Date(entry.day).getFullYear()}-W${Math.ceil(
+      new Date(entry.day).getDate() / 7
+    )}`;
+
+    // Monthly Aggregation
+    monthlyMap.set(month, (monthlyMap.get(month) || 0) + entry.totalEnergy);
+
+    // Weekly Aggregation
+    weeklyMap.set(week, (weeklyMap.get(week) || 0) + entry.totalEnergy);
+  });
+
+  const highestMonth = [...monthlyMap.entries()].reduce((max, curr) =>
+    curr[1] > max[1] ? curr : max
+  );
+  const lowestMonth = [...monthlyMap.entries()].reduce((min, curr) =>
+    curr[1] < min[1] ? curr : min
+  );
+
+  const highestWeek = [...weeklyMap.entries()].reduce((max, curr) =>
+    curr[1] > max[1] ? curr : max
+  );
+  const lowestWeek = [...weeklyMap.entries()].reduce((min, curr) =>
+    curr[1] < min[1] ? curr : min
+  );
+
+  const summaryData = [
+    {
+      title: 'Yearly',
+      energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyYear)} kWh`,
+      events: `${new Intl.NumberFormat('de-DE').format(totalEventsYear)}`,
+    },
+    {
+      title: 'Monthly (Avg)',
+      energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyMonth)} kWh`,
+      events: `${new Intl.NumberFormat('de-DE').format(totalEventsMonth)}`,
+    },
+    {
+      title: 'Weekly (Avg)',
+      energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyWeek)} kWh`,
+      events: `${new Intl.NumberFormat('de-DE').format(totalEventsWeek)}`,
+    },
+    {
+      title: 'Daily (Avg)',
+      energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyDay)} kWh`,
+      events: `${new Intl.NumberFormat('de-DE').format(totalEventsDay)}`,
+    },
+    {
+      title: 'Highest Total Energy',
+      energy: `${new Intl.NumberFormat('de-DE').format(
+        highestEnergyDay.totalEnergy
+      )} kWh`,
+      extraContent: highestEnergyDay.day,
+    },
+    {
+      title: 'Lowest Total Energy',
+      energy: `${new Intl.NumberFormat('de-DE').format(
+        lowestEnergyDay.totalEnergy
+      )} kWh`,
+      extraContent: lowestEnergyDay.day,
+    },
+    {
+      title: 'Most Events',
+      events: `${new Intl.NumberFormat('de-DE').format(
+        highestEventsDay.totalEvents
+      )} Events`,
+      extraContent: highestEventsDay.day,
+    },
+    {
+      title: 'Least Events',
+      events: `${new Intl.NumberFormat('de-DE').format(
+        lowestEventsDay.totalEvents
+      )} Events`,
+      extraContent: lowestEventsDay.day,
+    },
+    {
+      title: 'Highest Energy Month',
+      energy: `${new Intl.NumberFormat('de-DE').format(highestMonth[1])} kWh`,
+      extraContent: highestMonth[0],
+    },
+    {
+      title: 'Lowest Energy Month',
+      energy: `${new Intl.NumberFormat('de-DE').format(lowestMonth[1])} kWh`,
+      extraContent: lowestMonth[0],
+    },
+    {
+      title: 'Highest Energy Week',
+      energy: `${new Intl.NumberFormat('de-DE').format(highestWeek[1])} kWh`,
+      extraContent: highestWeek[0],
+    },
+    {
+      title: 'Lowest Energy Week',
+      energy: `${new Intl.NumberFormat('de-DE').format(lowestWeek[1])} kWh`,
+      extraContent: lowestWeek[0],
+    },
+  ];
+
+  return summaryData;
 };
 
 // COLOR PALETTE
@@ -183,3 +249,12 @@ export const getColor = (value: number): string => {
   if (value < 1350) return 'bg-red-500';
   return 'bg-red-700';
 };
+
+// TOTAL ENERGY PIE
+export const TOTAL_ENERGY_PIE_COLORS = [
+  '#9AA6B2',
+  '#BCCCDC',
+  '#D9EAFD',
+  '#FFBB28',
+  '#FF8042',
+];

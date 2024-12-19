@@ -1,3 +1,4 @@
+// Common Output Interfaces
 interface DailyData {
   day: string;
   BULK: number;
@@ -49,6 +50,40 @@ interface CustomLabelProps {
   errors: number;
 }
 
+// Consumption Table
+interface TooltipState {
+  content: string;
+  x: number;
+  y: number;
+}
+
+interface ConsumptionDailyData {
+  day: string;
+  totalEnergy: number;
+  totalEvents: number;
+}
+
+interface SummaryData {
+  title: string;
+  energy?: string; // Optional because some objects may only have events
+  events?: string; // Optional because some objects may only have energy
+  extraContent?: string; // For additional contextual information (e.g., day, month, or week)
+}
+
+type DailyDataKeys = 'BULK' | 'FLOATING' | 'ABS';
+
+// Hourly Chart
+interface HourlyData {
+  hour: string;
+  [key: string]: number | string;
+}
+
+// Total Energy Chart
+interface TotalEnergyChartProps {
+  selectedDate: string;
+  filteredData: ChargePointData[];
+}
+
 export type {
   ChargePointData,
   CustomLabelProps,
@@ -56,4 +91,10 @@ export type {
   WeeklySummary,
   MonthlySummary,
   AnnualSummary,
+  TooltipState,
+  DailyDataKeys,
+  HourlyData,
+  TotalEnergyChartProps,
+  ConsumptionDailyData,
+  SummaryData,
 };

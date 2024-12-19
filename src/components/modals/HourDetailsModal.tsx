@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface HourDetailsModalProps {
-  selectedHour: string | null;
-  hourlyChargingData: any[];
-  onClose: () => void;
-  setSelectedHour: (hour: string) => void;
-}
+import { HourDetailsModalProps } from '../../interfaces';
 
 const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
   selectedHour = '12:00',

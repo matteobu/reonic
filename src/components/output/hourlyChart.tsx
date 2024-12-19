@@ -11,16 +11,14 @@ import {
   Bar,
 } from 'recharts';
 import ComponentHeader from './componentHeader';
-import { ChargePointData } from '../../utils/interfaces';
-import chargePointData from '../input/chargepoint_mock_data.json';
-import { CP_COLORS } from '../../utils/utils';
-import HourDetailsModal from './modals/HourDetailsModal';
-import FilterModal from './modals/FilterCPModal';
-
-interface HourlyData {
-  hour: string;
-  [key: string]: number | string;
-}
+import {
+  ChargePointData,
+  HourlyData,
+} from '../../interfaces/outputs.interfaces';
+import chargePointData from '../../data/chargepoint_mock_data.json';
+import { CP_COLORS } from '../../utils/constants';
+import HourDetailsModal from '../modals/HourDetailsModal';
+import FilterModal from '../modals/FilterCPModal';
 
 const HourlyChargingChart: React.FC = () => {
   const mockedData: ChargePointData[] = chargePointData;
@@ -81,17 +79,21 @@ const HourlyChargingChart: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <ComponentHeader name={'Hourly Chart'} onDateChange={handleDateChange}>
+      <ComponentHeader
+        name={'Hourly Chart'}
+        onDateChange={handleDateChange}
+        isOnDateChange={true}
+      >
         <>
           <button
             onClick={() => setShowHourModal(true)}
-            className="px-4 h-7 bg-gray-600 text-white rounded-md shadow"
+            className="px-4 h-7 bg-gray-50 text-gray-600 rounded-md shadow"
           >
             Show Hour Details
           </button>
           <button
             onClick={() => setShowFilterModal(true)}
-            className="px-4 h-7 bg-gray-600 text-white rounded-md shadow"
+            className="px-4 h-7  bg-gray-50 text-gray-600 rounded-md shadow"
           >
             Filter Charge Points
           </button>
@@ -116,7 +118,7 @@ const HourlyChargingChart: React.FC = () => {
         />
       )}
 
-      <div className="w-full flex-1 p-4 bg-gray-50 rounded-lg shadow-md border border-gray-200 sm:h-[400px] md:h-[450px] lg:h-[500px]">
+      <div className="w-[98%] flex-1 p-4 m-2 bg-gray-100 rounded-lg shadow-md border border-gray-200 h-[45vh]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={filteredData}
@@ -139,7 +141,7 @@ const HourlyChargingChart: React.FC = () => {
           </LineChart>
         </ResponsiveContainer>
       </div>
-      <div className="w-full flex-1 p-4 bg-gray-50 rounded-lg shadow-md border border-gray-200 sm:h-[350px] md:h-[400px] lg:h-[450px] mt-4">
+      <div className="w-[98%] flex-1 p-4 m-2 bg-gray-100 rounded-lg shadow-md border border-gray-200 h-[45vh]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={filteredData}

@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface FilterModalProps {
-  mockedData: any[];
-  activeCPs: string[];
-  toggleCP: (cpId: string) => void;
-  onClose: () => void;
-}
+import { FilterModalProps } from '../../interfaces';
 
 const FilterModal: React.FC<FilterModalProps> = ({
   mockedData,

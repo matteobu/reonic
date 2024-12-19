@@ -4,30 +4,36 @@ import Header from './components/header';
 import Sidebar from './components/sidebar';
 import DailyChargingChart from './components/output/dailyChart';
 import HourlyChargingChart from './components/output/hourlyChart';
-import ChargingInputForm from './components/input/inputForm';
+import ChargingInputForm from './components/modals/InputFormModal';
 import { useData } from './context/DataContext';
-import HeatmapChart from './components/output/heatMapChart';
+import HeatmapChart from './components/output/consumptionTable';
+import SidebarHorizontal from './components/sidebarHorizontal';
 
 const App: React.FC = () => {
   const { activeComponents, isModalVisible, toggleModal } = useData();
 
-  // Dynamically render active component
   const renderActiveComponent = () => {
-    if (activeComponents.c1) return <DailyChargingChart />;
-    if (activeComponents.c2) return <HourlyChargingChart />;
-    if (activeComponents.c5) return <HeatmapChart />;
-    return <div className="text-center p-4">No active component</div>;
+    const activeKey = (Object.keys(activeComponents) as ComponentKey[]).find(
+      (key) => activeComponents[key]
+    );
+
+    return activeKey ? (
+      componentMap[activeKey]
+    ) : (
+      <div className="text-center p-4">No active component</div>
+    );
   };
 
   return (
     <div className="w-screen h-screen bg-white bg-center bg-no-repeat">
       <Header />
       {/* MAIN AREA */}
-      <div className="flex h-[calc(100vh-52px)]">
+      <div className="flex flex-col md:flex-row h-[calc(100vh-52px)]">
         <Sidebar />
-        <div className="h-full w-[97%] bg-gray-100 p-0">
-          {renderActiveComponent()}
+        <div className="flex md:hidden w-full h-[4%] bg-sideBar">
+          <SidebarHorizontal />
         </div>
+        <div className="flex-1 bg-gray-100">{renderActiveComponent()}</div>
       </div>
 
       {/* INPUT MODAL */}
@@ -49,3 +55,11 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+const componentMap = {
+  c1: <DailyChargingChart />,
+  c2: <HourlyChargingChart />,
+  c3: <HeatmapChart />,
+};
+
+type ComponentKey = keyof typeof componentMap;
