@@ -7,6 +7,7 @@ This project is a frontend application designed to simulate the charging of elec
 - **Simulation Parameters**: Configure the number of charging points, arrival probability of cars, car consumption (in kWh), and charging power per charging point (in kW).
 - **Dynamic Data Generation**: Simulate charging events based on user inputs.
 - **Responsive Design**: Optimized for various screen sizes using Tailwind CSS.
+- **Translation**: Supporting English 🫖, German 🥨 and Italian 🍕 languages.
 
 ## Technologies Used
 
@@ -71,3 +72,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements
 
 This project was developed as part of a frontend task for Reonic.
+
+## Web App Preview
+
+![App Preview](./public/appPreview/LandingPage.png)
