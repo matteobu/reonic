@@ -2,20 +2,23 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { TotalEnergyChartProps } from '../../interfaces/outputs.interfaces';
 import { TOTAL_ENERGY_PIE_COLORS as COLORS } from '../../utils/utils';
+import { useTranslation } from 'react-i18next';
 
 const TotalEnergyChart: React.FC<TotalEnergyChartProps> = ({
   selectedDate,
   filteredData,
 }) => {
+  const { t } = useTranslation();
+
   const pieChartData = filteredData.map((data) => ({
     id: data.id,
-    totalEnergy: data.dailyData[0].totalEnergy,
+    totalEnergy: data.dailyData[0]?.totalEnergy || 0,
   }));
 
   return (
     <>
       <h2 className="text-center text-lg font-semibold mb-4 border-b border-gray-300">
-        Total Energy Charged on {selectedDate}
+        {t('totalEnergyChart.title', { selectedDate })}
       </h2>
 
       {filteredData.length > 0 ? (
@@ -37,12 +40,17 @@ const TotalEnergyChart: React.FC<TotalEnergyChartProps> = ({
                 />
               ))}
             </Pie>
-            <Tooltip formatter={(name, value) => [`${value}: ${name} kWh`]} />
+            <Tooltip
+              formatter={(value, name) => [
+                `${value} kWh`,
+                `${t('totalEnergyChart.pieTooltip', { id: name })}`,
+              ]}
+            />
           </PieChart>
         </ResponsiveContainer>
       ) : (
         <div className="text-center text-gray-500 mt-4">
-          No data available for the selected date.
+          {t('totalEnergyChart.noData')}
         </div>
       )}
     </>

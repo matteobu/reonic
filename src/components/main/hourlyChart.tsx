@@ -10,7 +10,7 @@ import {
   BarChart,
   Bar,
 } from 'recharts';
-import ComponentHeader from './componentHeader';
+import ComponentHeader from './navBar';
 import {
   ChargePointData,
   HourlyData,
@@ -19,8 +19,10 @@ import chargePointData from '../../mocks/mock_data.json';
 import { CP_COLORS } from '../../utils/constants';
 import HourDetailsModal from '../modals/HourDetailsModal';
 import FilterModal from '../modals/FilterCPModal';
+import { useTranslation } from 'react-i18next';
 
 const HourlyChargingChart: React.FC = () => {
+  const { t } = useTranslation();
   const mockedData: ChargePointData[] = chargePointData;
   const [showHourModal, setShowHourModal] = useState(false);
   const [selectedHour, setSelectedHour] = useState<string | null>(null);
@@ -80,7 +82,7 @@ const HourlyChargingChart: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full">
       <ComponentHeader
-        name={'Hourly Chart'}
+        name={t('hourlyChart.title')}
         onDateChange={handleDateChange}
         isOnDateChange={true}
       >
@@ -89,13 +91,13 @@ const HourlyChargingChart: React.FC = () => {
             onClick={() => setShowHourModal(true)}
             className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
-            Show Hour Details
+            {t('hourlyChart.hourDetails')}
           </button>
           <button
             onClick={() => setShowFilterModal(true)}
             className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
-            Filter Charge Points
+            {t('hourlyChart.filterCP')}
           </button>
         </>
       </ComponentHeader>

@@ -5,10 +5,12 @@ import {
   calculateAllSummaries,
   getColor,
 } from '../../utils/utils';
-import ComponentHeader from './componentHeader';
+import ComponentHeader from './navBar';
 import SummaryBoxGrid from './summaryGridBox';
+import { useTranslation } from 'react-i18next';
 
 const ConsumptionTable: React.FC = () => {
+  const { t } = useTranslation();
   const mockedData = chargePointData;
   const aggregatedDailyEnergyEvents = aggregateDailyData(mockedData);
   const summaryData = calculateAllSummaries(aggregatedDailyEnergyEvents);
@@ -42,13 +44,15 @@ const ConsumptionTable: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full">
       <ComponentHeader
-        name={'Consumption Heatmap'}
+        name={t('componentHeader.name')} // Translated name
         onDateChange={handleDateChange}
         isOnDateChange={false}
       />
 
       <div className="h-full bg-gray-100 p-4 m-2 shadow-md border border-gray-300 rounded-lg flex flex-col relative">
-        <h3 className="text-center text-md font-medium mb-2">Total Energy</h3>
+        <h3 className="text-center text-md font-medium mb-2">
+          {t('consumptionTable.totalEnergy')} {/* Translated header */}
+        </h3>
         <div className="flex flex-wrap gap-1 mb-4">
           {aggregatedDailyEnergyEvents.map((entry) => (
             <div
@@ -59,14 +63,18 @@ const ConsumptionTable: React.FC = () => {
               onMouseEnter={(e) =>
                 handleMouseEnter(
                   e,
-                  `Day: ${entry.day}\nEnergy: ${entry.totalEnergy} kWh`
+                  `${t('consumptionTable.tooltipDay')}: ${entry.day}\n${t(
+                    'consumptionTable.tooltipEnergy'
+                  )}: ${entry.totalEnergy} kWh`
                 )
               }
               onMouseLeave={handleMouseLeave}
             ></div>
           ))}
         </div>
-        <h3 className="text-center text-md font-medium mb-2">Total Events</h3>
+        <h3 className="text-center text-md font-medium mb-2">
+          {t('consumptionTable.totalEvents')} {/* Translated header */}
+        </h3>
         <div className="flex flex-wrap gap-1">
           {aggregatedDailyEnergyEvents.map((entry) => (
             <div
@@ -77,7 +85,9 @@ const ConsumptionTable: React.FC = () => {
               onMouseEnter={(e) =>
                 handleMouseEnter(
                   e,
-                  `Day: ${entry.day}\nEvents: ${entry.totalEvents}`
+                  `${t('consumptionTable.tooltipDay')}: ${entry.day}\n${t(
+                    'consumptionTable.tooltipEvents'
+                  )}: ${entry.totalEvents}`
                 )
               }
               onMouseLeave={handleMouseLeave}

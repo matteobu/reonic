@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface SummaryData {
   title: string;
@@ -12,11 +13,14 @@ interface SummaryBoxGridProps {
 }
 
 const SummaryBoxGrid: React.FC<SummaryBoxGridProps> = ({ summaryData }) => {
+  const { t } = useTranslation();
   const rows = [summaryData.slice(0, 6), summaryData.slice(6, 12)];
 
   return (
     <div className="mt-6">
-      <h3 className="text-center text-lg font-semibold mb-6">Summary</h3>
+      <h3 className="text-center text-lg font-semibold mb-6">
+        {t('summaryBoxGrid.title')}
+      </h3>
 
       {rows.map((row, rowIndex) => (
         <div
@@ -38,7 +42,7 @@ const SummaryBoxGrid: React.FC<SummaryBoxGridProps> = ({ summaryData }) => {
                   <span className="block font-bold text-md">
                     {summary.energy}
                   </span>
-                  Energy
+                  {t('summaryBoxGrid.energy')}
                 </p>
               )}
               {summary.events && (
@@ -46,7 +50,7 @@ const SummaryBoxGrid: React.FC<SummaryBoxGridProps> = ({ summaryData }) => {
                   <span className="block font-bold text-md">
                     {summary.events}
                   </span>
-                  Events
+                  {t('summaryBoxGrid.events')}
                 </p>
               )}
               {summary.extraContent && (

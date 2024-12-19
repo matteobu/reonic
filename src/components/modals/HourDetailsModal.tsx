@@ -1,5 +1,6 @@
 import React from 'react';
 import { HourDetailsModalProps } from '../../interfaces';
+import { useTranslation } from 'react-i18next';
 
 const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
   selectedHour = '12:00',
@@ -7,6 +8,8 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
   onClose,
   setSelectedHour,
 }) => {
+  const { t } = useTranslation(); // Access the translation function
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center transition-opacity"
@@ -18,11 +21,12 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
-          Hour Details for <span className="text-blue-600">{selectedHour}</span>
+          {t('hourDetailsModal.title', { selectedHour })}{' '}
+          <span className="text-blue-600">{selectedHour}</span>
         </h2>
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-600 mb-2">
-            Select Hour
+            {t('hourDetailsModal.selectHour')}
           </label>
           <select
             value={selectedHour || '12:00'}
@@ -52,7 +56,9 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
                       className="flex justify-between items-center p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
                     >
                       <span className="font-semibold text-gray-800">{cp}</span>
-                      <span className="text-gray-600">{String(value)} kW</span>
+                      <span className="text-gray-600">
+                        {String(value)} {t('hourDetailsModal.unit')}
+                      </span>
                     </div>
                   ))}
               </div>

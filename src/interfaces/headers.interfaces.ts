@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface ComponentHeaderProps {
+export interface NavBarProps {
   name: string;
   onDateChange: (date: string) => void;
   isOnDateChange: boolean;

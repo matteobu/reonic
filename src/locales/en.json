@@ -1,0 +1,89 @@
+{
+  "header": {
+    "title": "REONIC SIMULATION TEST",
+    "githubLinkTooltip": "Visit GitHub Repository"
+  },
+  "componentHeader": {
+    "name": "Consumption Heatmap"
+  },
+  "consumptionTable": {
+    "totalEnergy": "Total Energy",
+    "totalEvents": "Total Events",
+    "tooltipDay": "Day",
+    "tooltipEnergy": "Energy",
+    "tooltipEvents": "Events"
+  },
+  "summaryBoxGrid": {
+    "title": "Summary",
+    "energy": "Energy",
+    "events": "Events"
+  },
+  "summary": {
+    "yearly": "Yearly",
+    "monthlyAvg": "Monthly (Avg)",
+    "weeklyAvg": "Weekly (Avg)",
+    "dailyAvg": "Daily (Avg)",
+    "highestTotalEnergy": "Highest Total Energy",
+    "lowestTotalEnergy": "Lowest Total Energy",
+    "mostEvents": "Most Events",
+    "leastEvents": "Least Events",
+    "highestEnergyMonth": "Highest Energy Month",
+    "lowestEnergyMonth": "Lowest Energy Month",
+    "highestEnergyWeek": "Highest Energy Week",
+    "lowestEnergyWeek": "Lowest Energy Week"
+  },
+  "dailyChart": {
+    "title": "Daily Charging Chart",
+    "yAxisLabel": "kW",
+    "aggregateMetrics": "Aggregate Metrics",
+    "errorLogs": "Error Logs",
+    "errorMessage": "{{id}}: {{errors}} Errors",
+    "totalBULK": "Total BULK",
+    "totalFLOATING": "Total FLOATING",
+    "totalABS": "Total ABS",
+    "totalday": "Day",
+    "totaltotalEnergy": "Total Energy",
+    "totalevents": "Total Events",
+    "totalpeakDemand": "Peak Demand",
+    "totalerrors": "Total Errors"
+  },
+  "totalEnergyChart": {
+    "title": "Total Energy Charged on {{selectedDate}}",
+    "pieTooltip": "Energy for {{id}}",
+    "noData": "No data available for the selected date."
+  },
+  "hourlyChart": {
+    "title": "Hourly Chart",
+    "hourDetails": "Show Hour Details",
+    "filterCP": "Filter Charge Points"
+  },
+  "chargePointConfigRow": {
+    "points": "Charge Points:",
+    "power": " Charging Power (kW):"
+  },
+  "chargingInputForm": {
+    "title": "Simulation Parameters",
+    "arrivalProbability": "Arrival Probability Multiplier (%):",
+    "carConsumption": "Car Consumption (kWh):",
+    "chargePointConfig": "Charge Point Config",
+    "submit": "Submit",
+    "errors": {
+      "fixValidation": "Please fix the validation errors before submitting.",
+      "totalChargePoints": "Total charge points ({{totalChargePoints}}) exceed the maximum allowed (20).",
+      "totalChargingPower": "Total charging power ({{totalChargingPower}} kW) exceeds the maximum allowed (220 kW).",
+      "invalidChargingPower": "Charging power per charge point cannot exceed 50 kW."
+    }
+  },
+  "filterModal": {
+    "title": "Filter Charge Points",
+    "status": {
+      "activated": "Activated",
+      "notActivated": "Not Activated"
+    }
+  },
+  "hourDetailsModal": {
+    "title": "Hour Details for {{selectedHour}}",
+    "selectHour": "Select Hour",
+    "unit": "kW"
+  }
+}

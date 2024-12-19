@@ -3,6 +3,7 @@ import {
   ConsumptionDailyData,
   SummaryData,
 } from '../interfaces/outputs.interfaces';
+import i18next from 'i18next';
 
 // FORM VALIDATION
 export const validateForm = (name: string, value: number): string => {
@@ -84,6 +85,7 @@ export const aggregateDailyData = (mockedData: ChargePointData[]) => {
 };
 
 // CALCULATE THE SUMMARIES FOR THE COMPONENT
+
 export const calculateAllSummaries = (
   aggregatedDailyEnergyEvents: ConsumptionDailyData[]
 ): SummaryData[] => {
@@ -157,70 +159,70 @@ export const calculateAllSummaries = (
 
   const summaryData = [
     {
-      title: 'Yearly',
+      title: i18next.t('summary.yearly'),
       energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyYear)} kWh`,
       events: `${new Intl.NumberFormat('de-DE').format(totalEventsYear)}`,
     },
     {
-      title: 'Monthly (Avg)',
+      title: i18next.t('summary.monthlyAvg'),
       energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyMonth)} kWh`,
       events: `${new Intl.NumberFormat('de-DE').format(totalEventsMonth)}`,
     },
     {
-      title: 'Weekly (Avg)',
+      title: i18next.t('summary.weeklyAvg'),
       energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyWeek)} kWh`,
       events: `${new Intl.NumberFormat('de-DE').format(totalEventsWeek)}`,
     },
     {
-      title: 'Daily (Avg)',
+      title: i18next.t('summary.dailyAvg'),
       energy: `${new Intl.NumberFormat('de-DE').format(totalEnergyDay)} kWh`,
       events: `${new Intl.NumberFormat('de-DE').format(totalEventsDay)}`,
     },
     {
-      title: 'Highest Total Energy',
+      title: i18next.t('summary.highestTotalEnergy'),
       energy: `${new Intl.NumberFormat('de-DE').format(
         highestEnergyDay.totalEnergy
       )} kWh`,
       extraContent: highestEnergyDay.day,
     },
     {
-      title: 'Lowest Total Energy',
+      title: i18next.t('summary.lowestTotalEnergy'),
       energy: `${new Intl.NumberFormat('de-DE').format(
         lowestEnergyDay.totalEnergy
       )} kWh`,
       extraContent: lowestEnergyDay.day,
     },
     {
-      title: 'Most Events',
+      title: i18next.t('summary.mostEvents'),
       events: `${new Intl.NumberFormat('de-DE').format(
         highestEventsDay.totalEvents
-      )} Events`,
+      )}`,
       extraContent: highestEventsDay.day,
     },
     {
-      title: 'Least Events',
+      title: i18next.t('summary.leastEvents'),
       events: `${new Intl.NumberFormat('de-DE').format(
         lowestEventsDay.totalEvents
-      )} Events`,
+      )}`,
       extraContent: lowestEventsDay.day,
     },
     {
-      title: 'Highest Energy Month',
+      title: i18next.t('summary.highestEnergyMonth'),
       energy: `${new Intl.NumberFormat('de-DE').format(highestMonth[1])} kWh`,
       extraContent: highestMonth[0],
     },
     {
-      title: 'Lowest Energy Month',
+      title: i18next.t('summary.lowestEnergyMonth'),
       energy: `${new Intl.NumberFormat('de-DE').format(lowestMonth[1])} kWh`,
       extraContent: lowestMonth[0],
     },
     {
-      title: 'Highest Energy Week',
+      title: i18next.t('summary.highestEnergyWeek'),
       energy: `${new Intl.NumberFormat('de-DE').format(highestWeek[1])} kWh`,
       extraContent: highestWeek[0],
     },
     {
-      title: 'Lowest Energy Week',
+      title: i18next.t('summary.lowestEnergyWeek'),
       energy: `${new Intl.NumberFormat('de-DE').format(lowestWeek[1])} kWh`,
       extraContent: lowestWeek[0],
     },

@@ -14,12 +14,14 @@ import {
   DailyDataKeys,
 } from '../../interfaces/outputs.interfaces';
 import chargePointData from '../../mocks/mock_data.json';
-import ComponentHeader from './componentHeader';
+import ComponentHeader from './navBar';
 import { useData } from '../../context/DataContext';
 import { getRandomArray } from '../../utils/utils';
 import TotalEnergyChart from './totalEnergyChart';
+import { useTranslation } from 'react-i18next';
 
 const DailyChart: React.FC = () => {
+  const { t } = useTranslation();
   const { chargePoints } = useData();
   const mockedData: ChargePointData[] = chargePointData;
   const [modifiedData, setModifiedData] = useState<ChargePointData[]>(
@@ -72,7 +74,7 @@ const DailyChart: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full ">
       <ComponentHeader
-        name={'Daily Charging Chart'}
+        name={t('dailyChart.title')}
         onDateChange={handleDateChange}
         isOnDateChange={true}
       />
@@ -85,7 +87,11 @@ const DailyChart: React.FC = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="id" />
             <YAxis
-              label={{ value: 'kW', angle: -90, position: 'insideLeft' }}
+              label={{
+                value: t('dailyChart.yAxisLabel'),
+                angle: -90,
+                position: 'insideLeft',
+              }}
             />
             <Tooltip />
             <Legend />
@@ -99,14 +105,16 @@ const DailyChart: React.FC = () => {
       <div className="flex flex-col m-2 md:flex-row w-[99%] mt-4 space-y-4 md:space-y-0 md:space-x-4">
         <div className="flex-1 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200">
           <h3 className="text-center font-semibold mb-2 border-b border-gray-300">
-            Aggregate Metrics
+            {t('dailyChart.aggregateMetrics')}
           </h3>
           {cpData && (
             <div className="space-y-2">
               {(Object.keys(cpData.dailyData[0] || {}) as DailyDataKeys[]).map(
                 (key) => (
                   <div key={key} className="flex justify-between">
-                    <span className="text-gray-600">{`Total ${key}`}</span>
+                    <span className="text-gray-600">
+                      {t(`dailyChart.total${key}`)}
+                    </span>
                     <span className="font-semibold">
                       {validDailyDataKeys.includes(key as DailyDataKeys)
                         ? `${cpData.dailyData[0]?.[key] || 0} kWh`
@@ -127,7 +135,7 @@ const DailyChart: React.FC = () => {
         </div>
         <div className="flex-1 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-200">
           <h3 className="text-center font-semibold mb-4 border-b border-gray-300">
-            Error Logs
+            {t('dailyChart.errorLogs')}
           </h3>
           <div className="max-h-[230px] overflow-y-auto space-y-2">
             {dailyData
@@ -137,7 +145,10 @@ const DailyChart: React.FC = () => {
                   key={cp.id}
                   className="p-2 bg-red-100 rounded text-red-800"
                 >
-                  {`${cp.id}: ${cp.errors} Errors`}
+                  {t('dailyChart.errorMessage', {
+                    id: cp.id,
+                    errors: cp.errors,
+                  })}{' '}
                 </div>
               ))}
           </div>

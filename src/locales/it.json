@@ -1,0 +1,89 @@
+{
+  "header": {
+    "title": "TEST DI SIMULAZIONE REONIC",
+    "githubLinkTooltip": "Visita il repository GitHub"
+  },
+  "componentHeader": {
+    "name": "Mappa del consumo"
+  },
+  "consumptionTable": {
+    "totalEnergy": "Energia totale",
+    "totalEvents": "Eventi totali",
+    "tooltipDay": "Giorno",
+    "tooltipEnergy": "Energia",
+    "tooltipEvents": "Eventi"
+  },
+  "summaryBoxGrid": {
+    "title": "Riepilogo",
+    "energy": "Energia",
+    "events": "Eventi"
+  },
+  "summary": {
+    "yearly": "Annuale",
+    "monthlyAvg": "Mensile (Media)",
+    "weeklyAvg": "Settimanale (Media)",
+    "dailyAvg": "Giornaliero (Media)",
+    "highestTotalEnergy": "Massima Energia Totale",
+    "lowestTotalEnergy": "Minima Energia Totale",
+    "mostEvents": "Maggior Numero di Eventi",
+    "leastEvents": "Minor Numero di Eventi",
+    "highestEnergyMonth": "Mese con Energia Massima",
+    "lowestEnergyMonth": "Mese con Energia Minima",
+    "highestEnergyWeek": "Settimana con Energia Massima",
+    "lowestEnergyWeek": "Settimana con Energia Minima"
+  },
+  "dailyChart": {
+    "title": "Grafico di Ricarica Giornaliera",
+    "yAxisLabel": "kW",
+    "aggregateMetrics": "Metriche Aggregate",
+    "errorLogs": "Registri di Errori",
+    "errorMessage": "{{id}}: {{errors}} Errori",
+    "totalBULK": "Totale BULK",
+    "totalFLOATING": "Totale FLOATING",
+    "totalABS": "Totale ABS",
+    "totalday": "Giorno",
+    "totaltotalEnergy": "Energia Totale",
+    "totalevents": "Eventi Totali",
+    "totalpeakDemand": "Domanda di Picco",
+    "totalerrors": "Errori Totali"
+  },
+  "totalEnergyChart": {
+    "title": "Energia totale caricata il {{selectedDate}}",
+    "pieTooltip": "Energia per {{id}}",
+    "noData": "Nessun dato disponibile per la data selezionata."
+  },
+  "hourlyChart": {
+    "title": "Grafico Orario",
+    "hourDetails": "Mostra Dettagli dell'Ora",
+    "filterCP": "Filtra Punti di Ricarica"
+  },
+  "chargePointConfigRow": {
+    "points": "Punti di Ricarica:",
+    "power": "Potenza di Carica (kW):"
+  },
+  "chargingInputForm": {
+    "title": "Parametri di Simulazione",
+    "arrivalProbability": "Moltiplicatore di Probabilità di Arrivo (%):",
+    "carConsumption": "Consumo Auto (kWh):",
+    "chargePointConfig": "Configurazione Punti di Ricarica",
+    "submit": "Invia",
+    "errors": {
+      "fixValidation": "Correggi gli errori di validazione prima di inviare.",
+      "totalChargePoints": "I punti di ricarica totali ({{totalChargePoints}}) superano il massimo consentito (20).",
+      "totalChargingPower": "La potenza totale di ricarica ({{totalChargingPower}} kW) supera il massimo consentito (220 kW).",
+      "invalidChargingPower": "La potenza di ricarica per punto di ricarica non può superare 50 kW."
+    }
+  },
+  "filterModal": {
+    "title": "Filtra Punti di Ricarica",
+    "status": {
+      "activated": "Attivato",
+      "notActivated": "Non Attivato"
+    }
+  },
+  "hourDetailsModal": {
+    "title": "Dettagli per l'ora {{selectedHour}}",
+    "selectHour": "Seleziona Ora",
+    "unit": "kW"
+  }
+}

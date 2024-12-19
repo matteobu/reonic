@@ -4,7 +4,10 @@ import { validateForm } from '../../utils/utils';
 import { useData } from '../../context/DataContext';
 import ChargePointConfigRow from './ChargePointConfigRow';
 import { FiMinus, FiPlus } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
+
 const ChargingInputForm: React.FC = () => {
+  const { t } = useTranslation();
   const { chargePoints, setData, toggleModal } = useData();
   const [formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -58,13 +61,17 @@ const ChargingInputForm: React.FC = () => {
 
     const totalChargePointsError =
       totalChargePoints > 20
-        ? `Total charge points (${totalChargePoints}) exceed the maximum allowed (20).`
+        ? t('chargingInputForm.errors.totalChargePoints', {
+            totalChargePoints,
+          })
         : '';
 
     const totalChargingPowerError = hasInvalidChargingPower
-      ? 'Charging power per charge point cannot exceed 50 kW.'
+      ? t('chargingInputForm.errors.invalidChargingPower')
       : totalChargingPower > 220
-      ? `Total charging power (${totalChargingPower} kW) exceeds the maximum allowed (220 kW).`
+      ? t('chargingInputForm.errors.totalChargingPower', {
+          totalChargingPower,
+        })
       : '';
 
     setErrors((prevErrors) => ({
@@ -85,7 +92,7 @@ const ChargingInputForm: React.FC = () => {
 
   const handleSubmitData = () => {
     if (errors.configs || Object.values(errors).some((err) => err)) {
-      alert('Please fix the validation errors before submitting.');
+      alert(t('chargingInputForm.errors.fixValidation'));
       return;
     }
 
@@ -96,7 +103,7 @@ const ChargingInputForm: React.FC = () => {
   return (
     <div className="p-6 max-w-md mx-auto bg-gray-300 rounded-lg shadow-md text-gray-700">
       <h1 className="text-lg font-bold mb-6 text-center text-gray-600">
-        Simulation Parameters
+        {t('chargingInputForm.title')}
       </h1>
       {configs.map((config, index) => (
         <ChargePointConfigRow
@@ -115,7 +122,7 @@ const ChargingInputForm: React.FC = () => {
           htmlFor="arrivalProbability"
           className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Arrival Probability Multiplier (%):
+          {t('chargingInputForm.arrivalProbability')}
         </label>
         <input
           type="number"
@@ -142,7 +149,7 @@ const ChargingInputForm: React.FC = () => {
           htmlFor="carConsumption"
           className="block text-sm font-medium border border-gray-300 text-gray-500"
         >
-          Car Consumption (kWh):
+          {t('chargingInputForm.carConsumption')}
         </label>
         <input
           type="number"
@@ -166,7 +173,7 @@ const ChargingInputForm: React.FC = () => {
       </div>
       <div className="mb-0 mt-1 flex justify-between items-center gap-4 bg-gray-200 px-4 py-2 rounded">
         <span className="font-bold text-gray-800 text-sm tracking-wide">
-          Charge Point Config
+          {t('chargingInputForm.chargePointConfig')}
         </span>
         <div className="flex items-center gap-2">
           <button
@@ -192,7 +199,7 @@ const ChargingInputForm: React.FC = () => {
         }`}
         disabled={!isFormValid}
       >
-        Submit
+        {t('chargingInputForm.submit')}
       </button>
     </div>
   );

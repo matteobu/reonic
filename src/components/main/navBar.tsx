@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ComponentHeaderProps } from '../../interfaces';
+import { NavBarProps } from '../../interfaces';
 
-const ComponentHeader: React.FC<ComponentHeaderProps> = ({
+const NavBar: React.FC<NavBarProps> = ({
   name,
   onDateChange,
   isOnDateChange,
@@ -41,8 +41,6 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
         <div className="flex items-center space-x-4">
           <div className="flex space-x-2 items-center">
             {children && <div className="flex items-center">{children}</div>}
-
-            {/* Day Picker */}
             <select
               value={selectedDay}
               onChange={handleDayChange}
@@ -57,8 +55,6 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
                 </option>
               ))}
             </select>
-
-            {/* Month Picker */}
             <select
               value={selectedMonth}
               onChange={handleMonthChange}
@@ -75,8 +71,6 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
                 </option>
               ))}
             </select>
-
-            {/* Year Picker */}
             <select
               value={selectedYear}
               onChange={handleYearChange}
@@ -91,4 +85,4 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
   );
 };
 
-export default ComponentHeader;
+export default NavBar;

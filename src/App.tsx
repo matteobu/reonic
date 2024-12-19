@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import Header from './components/header';
 import Sidebar from './components/sidebar';
-import DailyChargingChart from './components/output/dailyChart';
-import HourlyChargingChart from './components/output/hourlyChart';
+import DailyChargingChart from './components/main/dailyChart';
+import HourlyChargingChart from './components/main/hourlyChart';
 import ChargingInputForm from './components/modals/InputFormModal';
 import { useData } from './context/DataContext';
-import HeatmapChart from './components/output/consumptionTable';
+import HeatmapChart from './components/main/consumptionTable';
 import SidebarHorizontal from './components/sidebarHorizontal';
 
 const App: React.FC = () => {

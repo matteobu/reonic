@@ -1,0 +1,89 @@
+{
+  "header": {
+    "title": "REONIC SIMULATIONSTEST",
+    "githubLinkTooltip": "Besuchen Sie das GitHub-Repository"
+  },
+  "componentHeader": {
+    "name": "Verbrauchs-Heatmap"
+  },
+  "consumptionTable": {
+    "totalEnergy": "Gesamtenergie",
+    "totalEvents": "Gesamtveranstaltungen",
+    "tooltipDay": "Tag",
+    "tooltipEnergy": "Energie",
+    "tooltipEvents": "Veranstaltungen"
+  },
+  "summaryBoxGrid": {
+    "title": "Zusammenfassung",
+    "energy": "Energie",
+    "events": "Ereignisse"
+  },
+  "summary": {
+    "yearly": "Jährlich",
+    "monthlyAvg": "Monatlich (Durchschnitt)",
+    "weeklyAvg": "Wöchentlich (Durchschnitt)",
+    "dailyAvg": "Täglich (Durchschnitt)",
+    "highestTotalEnergy": "Höchste Gesamtenergie",
+    "lowestTotalEnergy": "Niedrigste Gesamtenergie",
+    "mostEvents": "Meiste Ereignisse",
+    "leastEvents": "Wenigste Ereignisse",
+    "highestEnergyMonth": "Monat mit höchster Energie",
+    "lowestEnergyMonth": "Monat mit niedrigster Energie",
+    "highestEnergyWeek": "Woche mit höchster Energie",
+    "lowestEnergyWeek": "Woche mit niedrigster Energie"
+  },
+  "dailyChart": {
+    "title": "Tägliches Lade-Diagramm",
+    "yAxisLabel": "kW",
+    "aggregateMetrics": "Aggregierte Metriken",
+    "errorLogs": "Fehlerprotokolle",
+    "errorMessage": "{{id}}: {{errors}} Fehler",
+    "totalBULK": "Gesamt BULK",
+    "totalFLOATING": "Gesamt FLOATING",
+    "totalABS": "Gesamt ABS",
+    "totalday": "Tag",
+    "totaltotalEnergy": "Gesamtenergie",
+    "totalevents": "Gesamtveranstaltungen",
+    "totalpeakDemand": "Spitzenlast",
+    "totalerrors": "Gesamtfehler"
+  },
+  "totalEnergyChart": {
+    "title": "Gesamte Energie geladen am {{selectedDate}}",
+    "pieTooltip": "Energie für {{id}}",
+    "noData": "Keine Daten für das ausgewählte Datum verfügbar."
+  },
+  "hourlyChart": {
+    "title": "Stündliches Diagramm",
+    "hourDetails": "Stundendetails anzeigen",
+    "filterCP": "Ladepunkte filtern"
+  },
+  "chargePointConfigRow": {
+    "points": "Ladepunkte:",
+    "power": "Ladeleistung (kW):"
+  },
+  "chargingInputForm": {
+    "title": "Simulationsparameter",
+    "arrivalProbability": "Ankunftswahrscheinlichkeit Multiplikator (%):",
+    "carConsumption": "Autoverbrauch (kWh):",
+    "chargePointConfig": "Ladestationskonfiguration",
+    "submit": "Einreichen",
+    "errors": {
+      "fixValidation": "Bitte beheben Sie die Validierungsfehler vor dem Absenden.",
+      "totalChargePoints": "Die Gesamtanzahl der Ladestationen ({{totalChargePoints}}) überschreitet das Maximum (20).",
+      "totalChargingPower": "Die Gesamtladekapazität ({{totalChargingPower}} kW) überschreitet das Maximum (220 kW).",
+      "invalidChargingPower": "Die Ladeleistung pro Ladestation darf 50 kW nicht überschreiten."
+    }
+  },
+  "filterModal": {
+    "title": "Ladestationen filtern",
+    "status": {
+      "activated": "Aktiviert",
+      "notActivated": "Nicht Aktiviert"
+    }
+  },
+  "hourDetailsModal": {
+    "title": "Stundendetails für {{selectedHour}}",
+    "selectHour": "Stunde auswählen",
+    "unit": "kW"
+  }
+}

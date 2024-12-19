@@ -1,5 +1,6 @@
 import React from 'react';
 import { FilterModalProps } from '../../interfaces';
+import { useTranslation } from 'react-i18next';
 
 const FilterModal: React.FC<FilterModalProps> = ({
   mockedData,
@@ -7,6 +8,8 @@ const FilterModal: React.FC<FilterModalProps> = ({
   toggleCP,
   onClose,
 }) => {
+  const { t } = useTranslation(); // Access the translation function
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center transition-opacity"
@@ -18,7 +21,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-4">
-          Filter Charge Points
+          {t('filterModal.title')}
         </h2>
         <div className="grid grid-cols-2 gap-4 pt-4">
           {mockedData.map((cp) => {
@@ -41,7 +44,9 @@ const FilterModal: React.FC<FilterModalProps> = ({
                       : 'bg-gray-200 text-gray-600'
                   }`}
                 >
-                  {isActive ? 'Activated' : 'Not Activated'}
+                  {isActive
+                    ? t('filterModal.status.activated')
+                    : t('filterModal.status.notActivated')}{' '}
                 </span>
               </div>
             );

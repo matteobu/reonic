@@ -1,6 +1,7 @@
 // ChargePointConfigRow.tsx
 import React from 'react';
 import { ChargePointConfigRowProps } from '../../interfaces';
+import { useTranslation } from 'react-i18next';
 
 const ChargePointConfigRow: React.FC<ChargePointConfigRowProps> = ({
   index,
@@ -8,11 +9,12 @@ const ChargePointConfigRow: React.FC<ChargePointConfigRowProps> = ({
   onChange,
   onBlur,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex justify-between gap-4 mb-3">
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-500 mb-1">
-          Charge Points:
+          {t('chargePointConfigRow.points')}
         </label>
         <input
           type="number"
@@ -28,7 +30,7 @@ const ChargePointConfigRow: React.FC<ChargePointConfigRowProps> = ({
 
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-500 mb-1">
-          Charging Power (kW):
+          {t('chargePointConfigRow.power')}
         </label>
         <input
           type="number"
