@@ -28,3 +28,9 @@ export const CP_COLORS: { [key: string]: string } = {
   CP19: '#A8DADC',
   CP20: '#F1FAEE',
 };
+
+export const LINKS = {
+  GITHUB_REPO: 'https://github.com/matteobu/reonic',
+  GITHUB_PROFILE_PICTURE:
+    'https://avatars.githubusercontent.com/u/62759388?v=4',
+};

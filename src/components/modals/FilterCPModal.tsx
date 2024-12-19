@@ -9,30 +9,43 @@ const FilterModal: React.FC<FilterModalProps> = ({
 }) => {
   return (
     <div
-      className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+      className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center transition-opacity"
       style={{ zIndex: 1000 }}
+      onClick={onClose}
     >
-      <div className="bg-white rounded-lg p-6 w-1/3">
-        <h2 className="text-xl font-bold mb-4">Filter Charge Points</h2>
-        <div className="flex flex-wrap gap-4">
-          {mockedData.map((cp) => (
-            <label key={cp.id} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={activeCPs.includes(cp.id)}
-                onChange={() => toggleCP(cp.id)}
-              />
-              {cp.id}
-            </label>
-          ))}
-        </div>
-        <div className="flex justify-end mt-4">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-green-600 text-white rounded-md shadow"
-          >
-            Save
-          </button>
+      <div
+        className="bg-white rounded-xl p-6 shadow-2xl w-[90%] max-w-md md:max-w-lg lg:max-w-xl transform scale-100 transition-transform"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-4">
+          Filter Charge Points
+        </h2>
+        <div className="grid grid-cols-2 gap-4 pt-4">
+          {mockedData.map((cp) => {
+            const isActive = activeCPs.includes(cp.id);
+            return (
+              <div
+                key={cp.id}
+                onClick={() => toggleCP(cp.id)}
+                className={`flex justify-between items-center p-3 rounded-lg shadow-sm cursor-pointer transition ${
+                  isActive
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <span className="font-medium">{cp.id}</span>
+                <span
+                  className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    isActive
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-gray-200 text-gray-600'
+                  }`}
+                >
+                  {isActive ? 'Activated' : 'Not Activated'}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ import {
   ChargePointData,
   HourlyData,
 } from '../../interfaces/outputs.interfaces';
-import chargePointData from '../../data/chargepoint_mock_data.json';
+import chargePointData from '../../mocks/mock_data.json';
 import { CP_COLORS } from '../../utils/constants';
 import HourDetailsModal from '../modals/HourDetailsModal';
 import FilterModal from '../modals/FilterCPModal';
@@ -87,13 +87,13 @@ const HourlyChargingChart: React.FC = () => {
         <>
           <button
             onClick={() => setShowHourModal(true)}
-            className="px-4 h-7 bg-gray-50 text-gray-600 rounded-md shadow"
+            className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
             Show Hour Details
           </button>
           <button
             onClick={() => setShowFilterModal(true)}
-            className="px-4 h-7  bg-gray-50 text-gray-600 rounded-md shadow"
+            className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
             Filter Charge Points
           </button>

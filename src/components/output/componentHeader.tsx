@@ -42,10 +42,11 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
           <div className="flex space-x-2 items-center">
             {children && <div className="flex items-center">{children}</div>}
 
+            {/* Day Picker */}
             <select
               value={selectedDay}
               onChange={handleDayChange}
-              className="bg-gray-50 text-xs p-1 rounded-md border border-gray-300 focus:outline-none appearance-none z-10"
+              className="bg-gray-50 text-sm px-3 h-7 rounded-md border border-gray-300 shadow focus:outline-none appearance-none"
             >
               {Array.from({ length: 31 }, (_, index) => (
                 <option
@@ -57,10 +58,11 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
               ))}
             </select>
 
+            {/* Month Picker */}
             <select
               value={selectedMonth}
               onChange={handleMonthChange}
-              className="bg-gray-50 text-xs p-1 w-14 rounded-md border border-gray-300 focus:outline-none appearance-none z-10"
+              className="bg-gray-50 text-sm px-3 h-7 rounded-md border border-gray-300 shadow focus:outline-none appearance-none"
             >
               {Array.from({ length: 12 }, (_, index) => (
                 <option
@@ -73,10 +75,12 @@ const ComponentHeader: React.FC<ComponentHeaderProps> = ({
                 </option>
               ))}
             </select>
+
+            {/* Year Picker */}
             <select
               value={selectedYear}
               onChange={handleYearChange}
-              className="bg-gray-50 text-xs p-1 rounded-md border border-gray-300 focus:outline-none appearance-none z-10"
+              className="bg-gray-50 text-sm px-3 h-7 rounded-md border border-gray-300 shadow focus:outline-none appearance-none"
             >
               <option value="2024">2024</option>
             </select>

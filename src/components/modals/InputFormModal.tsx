@@ -6,7 +6,6 @@ import ChargePointConfigRow from './ChargePointConfigRow';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 const ChargingInputForm: React.FC = () => {
   const { chargePoints, setData, toggleModal } = useData();
-
   const [formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [configs, setConfigs] = useState([

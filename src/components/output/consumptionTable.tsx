@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import chargePointData from '../../data/chargepoint_mock_data.json';
+import chargePointData from '../../mocks/mock_data.json';
 import {
   aggregateDailyData,
   calculateAllSummaries,

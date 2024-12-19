@@ -9,25 +9,25 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
 }) => {
   return (
     <div
-      className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+      className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center transition-opacity"
       style={{ zIndex: 1000 }}
+      onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg p-6 shadow-lg w-[90%] max-w-md md:max-w-lg lg:max-w-xl"
+        className="bg-white rounded-xl p-6 shadow-2xl w-[90%] max-w-md md:max-w-lg lg:max-w-xl transform scale-100 transition-transform"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Details for {selectedHour || '12:00'}
+        <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
+          Hour Details for <span className="text-blue-600">{selectedHour}</span>
         </h2>
-
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-gray-600 mb-2">
             Select Hour
           </label>
           <select
             value={selectedHour || '12:00'}
             onChange={(e) => setSelectedHour(e.target.value)}
-            className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
+            className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base transition"
           >
             {Array.from({ length: 24 }, (_, i) => {
               const hour = `${i.toString().padStart(2, '0')}:00`;
@@ -39,34 +39,24 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
             })}
           </select>
         </div>
-
-        <div className="border-t border-gray-300 mt-4 pt-4 max-h-[50vh] overflow-y-auto">
+        <div className="border-t border-gray-200 mt-4 pt-4 max-h-[50vh] overflow-y-auto">
           {hourlyChargingData
             .filter((data) => data.hour === (selectedHour || '12:00'))
             .map((data) => (
-              <div key={data.hour}>
+              <div key={data.hour} className="space-y-3">
                 {Object.entries(data)
                   .filter(([key]) => key !== 'hour')
                   .map(([cp, value]) => (
-                    <p
+                    <div
                       key={cp}
-                      className="text-sm text-gray-700 mb-2 flex justify-between"
+                      className="flex justify-between items-center p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
                     >
-                      <span className="font-medium">{cp}</span>
-                      <span>{String(value)} kW</span>{' '}
-                    </p>
+                      <span className="font-semibold text-gray-800">{cp}</span>
+                      <span className="text-gray-600">{String(value)} kW</span>
+                    </div>
                   ))}
               </div>
             ))}
-        </div>
-
-        <div className="flex justify-end mt-6">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition"
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>

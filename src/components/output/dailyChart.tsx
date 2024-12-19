@@ -13,7 +13,7 @@ import {
   ChargePointData,
   DailyDataKeys,
 } from '../../interfaces/outputs.interfaces';
-import chargePointData from '../../data/chargepoint_mock_data.json';
+import chargePointData from '../../mocks/mock_data.json';
 import ComponentHeader from './componentHeader';
 import { useData } from '../../context/DataContext';
 import { getRandomArray } from '../../utils/utils';
@@ -69,7 +69,6 @@ const DailyChart: React.FC = () => {
   };
 
   const validDailyDataKeys: DailyDataKeys[] = ['BULK', 'FLOATING', 'ABS'];
-  console.log(window.innerHeight);
   return (
     <div className="flex flex-col w-full h-full ">
       <ComponentHeader
