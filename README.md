@@ -33,8 +33,6 @@ Follow these steps to set up the project locally:
 
 3. **Install dependencies**:
 
-   Ensure you have [Yarn](https://yarnpkg.com/) installed. Then, run:
-
    ```bash
    npm install
    ```
