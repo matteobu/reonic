@@ -86,7 +86,7 @@
     "title": "Hour Details for {{selectedHour}}",
     "selectHour": "Select Hour",
     "unit": "kW"
-  }, 
+  },
   "formValidation": {
     "chargePoints": "Charge Points must be between 1 and 20.",
     "arrivalProbability": "Arrival Probability must be between 20% and 200%.",

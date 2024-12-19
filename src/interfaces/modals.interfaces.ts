@@ -1,5 +1,7 @@
+import { ChargePointData, HourlyData } from './outputs.interfaces';
+
 export interface FilterModalProps {
-  mockedData: any[];
+  mockedData: ChargePointData[];
   activeCPs: string[];
   toggleCP: (cpId: string) => void;
   onClose: () => void;
@@ -7,7 +9,7 @@ export interface FilterModalProps {
 
 export interface HourDetailsModalProps {
   selectedHour: string | null;
-  hourlyChargingData: any[];
+  hourlyChargingData: HourlyData[];
   onClose: () => void;
   setSelectedHour: (hour: string) => void;
 }

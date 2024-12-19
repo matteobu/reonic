@@ -21,8 +21,9 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
-          {t('hourDetailsModal.title', { selectedHour })}{' '}
-          <span className="text-blue-600">{selectedHour}</span>
+          {t('hourDetailsModal.title', {
+            selectedHour: selectedHour || '12:00',
+          })}
         </h2>
         <div className="mb-6">
           <label className="block text-sm font-semibold text-gray-600 mb-2">
