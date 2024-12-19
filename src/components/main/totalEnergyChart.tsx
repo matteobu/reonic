@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { TotalEnergyChartProps } from '../../interfaces/outputs.interfaces';
-import { TOTAL_ENERGY_PIE_COLORS as COLORS } from '../../utils/utils';
+import { TOTAL_ENERGY_PIE_COLORS as COLORS } from '../../utils/constants';
 import { useTranslation } from 'react-i18next';
 
 const TotalEnergyChart: React.FC<TotalEnergyChartProps> = ({

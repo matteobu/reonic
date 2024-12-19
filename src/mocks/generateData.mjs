@@ -1,6 +1,5 @@
 import fs from 'fs';
 
-//  Function to generate mock data for 20 charge points
 function generateMockData(chargePoints = 20) {
   const data = [];
 
@@ -27,7 +26,6 @@ function generateMockData(chargePoints = 20) {
       });
     }
 
-    // Weekly data for 52 weeks
     const weeklySummary = [];
     for (let w = 1; w <= 52; w++) {
       weeklySummary.push({
@@ -57,18 +55,18 @@ function generateMockData(chargePoints = 20) {
     for (let month of months) {
       monthlySummary.push({
         month: month,
-        totalEnergy: Math.floor(Math.random() * 10000) + 10000, // Between 10000-20000
-        events: Math.floor(Math.random() * 200) + 200, // Between 200-400
-        errors: Math.floor(Math.random() * 10) + 5, // Between 5-15
+        totalEnergy: Math.floor(Math.random() * 10000) + 10000,
+        events: Math.floor(Math.random() * 200) + 200,
+        errors: Math.floor(Math.random() * 10) + 5,
       });
     }
 
     const annualSummary = [
       {
         year: 2023,
-        totalEnergy: Math.floor(Math.random() * 30000) + 120000, // Between 120000-150000
-        events: Math.floor(Math.random() * 500) + 2500, // Between 2500-3000
-        errors: Math.floor(Math.random() * 30) + 20, // Between 20-50
+        totalEnergy: Math.floor(Math.random() * 30000) + 120000,
+        events: Math.floor(Math.random() * 500) + 2500,
+        errors: Math.floor(Math.random() * 30) + 20,
       },
       {
         year: 2024,

@@ -86,5 +86,11 @@
     "title": "Hour Details for {{selectedHour}}",
     "selectHour": "Select Hour",
     "unit": "kW"
+  }, 
+  "formValidation": {
+    "chargePoints": "Charge Points must be between 1 and 20.",
+    "arrivalProbability": "Arrival Probability must be between 20% and 200%.",
+    "carConsumption": "Car Consumption must be between 12.0 and 40.0 kWh.",
+    "chargingPower": "Charging Power must be between 1 and 11 kW."
   }
 }

@@ -29,6 +29,15 @@ export const CP_COLORS: { [key: string]: string } = {
   CP20: '#F1FAEE',
 };
 
+// TOTAL ENERGY PIE
+export const TOTAL_ENERGY_PIE_COLORS = [
+  '#9AA6B2',
+  '#BCCCDC',
+  '#D9EAFD',
+  '#FFBB28',
+  '#FF8042',
+];
+
 export const LINKS = {
   GITHUB_REPO: 'https://github.com/matteobu/reonic',
   GITHUB_PROFILE_PICTURE:

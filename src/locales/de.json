@@ -85,5 +85,11 @@
     "title": "Stundendetails für {{selectedHour}}",
     "selectHour": "Stunde auswählen",
     "unit": "kW"
+  },
+  "formValidation": {
+    "chargePoints": "Ladepunkte müssen zwischen 1 und 20 liegen.",
+    "arrivalProbability": "Ankunftswahrscheinlichkeit muss zwischen 20% und 200% liegen.",
+    "carConsumption": "Der Energieverbrauch des Autos muss zwischen 12,0 und 40,0 kWh liegen.",
+    "chargingPower": "Die Ladeleistung muss zwischen 1 und 11 kW liegen."
   }
 }

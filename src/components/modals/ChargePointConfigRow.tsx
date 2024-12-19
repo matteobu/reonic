@@ -27,7 +27,6 @@ const ChargePointConfigRow: React.FC<ChargePointConfigRowProps> = ({
           className="w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
         />
       </div>
-
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-500 mb-1">
           {t('chargePointConfigRow.power')}

@@ -8,7 +8,7 @@ const HourDetailsModal: React.FC<HourDetailsModalProps> = ({
   onClose,
   setSelectedHour,
 }) => {
-  const { t } = useTranslation(); // Access the translation function
+  const { t } = useTranslation();
 
   return (
     <div

@@ -8,7 +8,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
   toggleCP,
   onClose,
 }) => {
-  const { t } = useTranslation(); // Access the translation function
+  const { t } = useTranslation();
 
   return (
     <div

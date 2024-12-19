@@ -65,9 +65,9 @@ interface ConsumptionDailyData {
 
 interface SummaryData {
   title: string;
-  energy?: string; // Optional because some objects may only have events
-  events?: string; // Optional because some objects may only have energy
-  extraContent?: string; // For additional contextual information (e.g., day, month, or week)
+  energy?: string;
+  events?: string;
+  extraContent?: string;
 }
 
 type DailyDataKeys = 'BULK' | 'FLOATING' | 'ABS';

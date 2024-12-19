@@ -12,8 +12,6 @@ const SidebarHorizontal: React.FC = () => {
         className="text-gray-500 cursor-pointer"
         onClick={toggleModal}
       />
-
-      {/* Main Navigation Icons */}
       <div className="flex flex-row space-x-6">
         <FiZap
           size={15}
@@ -31,8 +29,6 @@ const SidebarHorizontal: React.FC = () => {
           onClick={() => setActiveComponent('c3')}
         />
       </div>
-
-      {/* Settings Icon */}
       <FiSettings size={15} className="text-gray-500 cursor-pointer" />
     </div>
   );

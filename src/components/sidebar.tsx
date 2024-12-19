@@ -7,7 +7,6 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="hidden md:flex flex-col justify-between items-center w-[3%] h-full bg-sideBar">
-      {/* Top Section */}
       <div className="mt-4">
         <FiEdit
           size={20}
@@ -15,8 +14,6 @@ const Sidebar: React.FC = () => {
           onClick={toggleModal}
         />
       </div>
-
-      {/* Middle Section */}
       <div className="flex flex-col items-center space-y-4">
         <FiZap
           size={20}
@@ -34,8 +31,6 @@ const Sidebar: React.FC = () => {
           onClick={() => setActiveComponent('c3')}
         />
       </div>
-
-      {/* Bottom Section */}
       <div className="mb-4">
         <FiSettings size={20} className="text-gray-500 cursor-pointer" />
       </div>

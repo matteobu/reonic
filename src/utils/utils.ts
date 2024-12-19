@@ -10,19 +10,19 @@ export const validateForm = (name: string, value: number): string => {
   switch (name) {
     case 'chargePoints':
       return value < 1 || value > 20
-        ? 'Charge Points must be between 1 and 20.'
+        ? i18next.t('formValidation.chargePoints')
         : '';
     case 'arrivalProbability':
       return value < 20 || value > 200
-        ? 'Arrival Probability must be between 20% and 200%.'
+        ? i18next.t('formValidation.arrivalProbability')
         : '';
     case 'carConsumption':
       return value < 12 || value > 40
-        ? 'Car Consumption must be between 12.0 and 40.0 kWh.'
+        ? i18next.t('formValidation.carConsumption')
         : '';
     case 'chargingPower':
       return value < 1 || value > 11
-        ? 'Charging Power must be between 1 and 11 kW.'
+        ? i18next.t('formValidation.chargingPower')
         : '';
     default:
       return '';
@@ -34,13 +34,10 @@ export const getRandomArray = (
   originalArray: ChargePointData[],
   desiredLength: number
 ): ChargePointData[] => {
-  // Clone the original array to avoid modifying it
   const newArray = [...originalArray];
-
-  // Remove random indices until the array length matches desiredLength
   while (newArray.length > desiredLength) {
     const randomIndex = Math.floor(Math.random() * newArray.length);
-    newArray.splice(randomIndex, 1); // Remove one element at the random index
+    newArray.splice(randomIndex, 1);
   }
 
   return newArray;
@@ -85,7 +82,6 @@ export const aggregateDailyData = (mockedData: ChargePointData[]) => {
 };
 
 // CALCULATE THE SUMMARIES FOR THE COMPONENT
-
 export const calculateAllSummaries = (
   aggregatedDailyEnergyEvents: ConsumptionDailyData[]
 ): SummaryData[] => {
@@ -136,10 +132,7 @@ export const calculateAllSummaries = (
       new Date(entry.day).getDate() / 7
     )}`;
 
-    // Monthly Aggregation
     monthlyMap.set(month, (monthlyMap.get(month) || 0) + entry.totalEnergy);
-
-    // Weekly Aggregation
     weeklyMap.set(week, (weeklyMap.get(week) || 0) + entry.totalEnergy);
   });
 
@@ -251,12 +244,3 @@ export const getColor = (value: number): string => {
   if (value < 1350) return 'bg-red-500';
   return 'bg-red-700';
 };
-
-// TOTAL ENERGY PIE
-export const TOTAL_ENERGY_PIE_COLORS = [
-  '#9AA6B2',
-  '#BCCCDC',
-  '#D9EAFD',
-  '#FFBB28',
-  '#FF8042',
-];

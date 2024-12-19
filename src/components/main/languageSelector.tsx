@@ -5,7 +5,7 @@ const LanguageSelector: React.FC = () => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang); // Dynamically change language
+    i18n.changeLanguage(lang);
   };
 
   return (

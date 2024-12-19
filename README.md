@@ -202,7 +202,7 @@ This page provides a visual overview of energy consumption and events over time,
 
 #### **Heatmap**
 
-- **Total Energy Heatmap**: Displays energy consumption using a color-coded grid, where each square represents a day and colors indicate consumption levels (e.g., red for high, green for moderate, yellow for low).
+- **Total Energy Heatmap**: Displays energy consumption using a color-coded grid, where each square represents a day and colors indicate consumption levels (e.g., red for high, yellow for moderate, green for low).
 - **Total Events Heatmap**: Visualizes the number of charging events per day using a blue gradient grid, with darker shades representing higher event counts.
 
 #### **Summary Metrics**

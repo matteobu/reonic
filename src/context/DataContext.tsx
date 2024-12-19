@@ -15,8 +15,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
   });
 
   const toggleModal = () => setIsModalVisible((prev) => !prev);
-
-  // Wrapper for setData to update the entire AppData object
   const setData = (newData: number) => {
     setChargePoints(newData);
   };

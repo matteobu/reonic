@@ -27,7 +27,6 @@ const App: React.FC = () => {
   return (
     <div className="w-screen h-screen bg-white bg-center bg-no-repeat">
       <Header />
-      {/* MAIN AREA */}
       <div className="flex flex-col md:flex-row h-[calc(100vh-52px)]">
         <Sidebar />
         <div className="flex md:hidden w-full h-[4%] bg-sideBar">
@@ -35,8 +34,6 @@ const App: React.FC = () => {
         </div>
         <div className="flex-1 bg-gray-100">{renderActiveComponent()}</div>
       </div>
-
-      {/* INPUT MODAL */}
       {isModalVisible && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"

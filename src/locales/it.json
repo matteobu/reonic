@@ -85,5 +85,11 @@
     "title": "Dettagli per l'ora {{selectedHour}}",
     "selectHour": "Seleziona Ora",
     "unit": "kW"
+  },
+  "formValidation": {
+    "chargePoints": "I punti di ricarica devono essere compresi tra 1 e 20.",
+    "arrivalProbability": "La probabilità di arrivo deve essere compresa tra il 20% e il 200%.",
+    "carConsumption": "Il consumo dell'auto deve essere compreso tra 12,0 e 40,0 kWh.",
+    "chargingPower": "La potenza di ricarica deve essere compresa tra 1 e 11 kW."
   }
 }
