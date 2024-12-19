@@ -119,7 +119,7 @@ The **Submit Button** becomes enabled only when all inputs meet the required con
 
 ![Submit Disabled](./public/appPreview/generalErrorSubmit.png)
 
-### Additional Customization
+### BONUS: Additional Customization
 
 ![Add Remove Btn](./public/appPreview/addRemoveBtn.png)
 
@@ -140,25 +140,59 @@ This ensures the simulation remains within realistic and manageable bounds.
 
 ### Daily Tooltip
 
+When hovering over a bar in the chart, it displays the daily details of each CP, such as:
+
+- BULK: Fast initial charging with constant current to quickly replenish most of the battery.
+- ABS (Absorption): Slower charging with constant voltage to top off the battery safely.
+- FLOATING: Maintenance phase, providing minimal current to keep the battery fully charged.
+
 ![Tooltip](./public/appPreview/DailyTooltip.png)
 
-### Languages
+### Language Selection
+
+The app supports the following languages:
+
+- **English** (default)
+- **German**
+- **Italian**
 
 ![Languages](./public/appPreview/Languages.png)
 
 ### Total Energy Pie
 
+Thi pie shows the total consumption of the day for each CP.
+
 ![Total Energy Pie](./public/appPreview/TotalEnergyPie.png)
 
 ### Hourly Chart
+
+Top Chart - Hourly Line Chart
+
+This chart displays the hourly energy consumption (kW) for each Charge Point (CP) over a 24-hour period. Each line represents a single Charge Point, allowing you to observe individual trends and variations in energy usage throughout the day.
+
+Bottom Chart - Hourly Stacked Bar Chart
+
+This chart visualizes the aggregated energy consumption (kW) across all Charge Points for each hour. Each bar is segmented by Charge Points, providing a clear comparison of their contributions to the total energy consumption during each hour.
 
 ![Hourly Chart](./public/appPreview/HourlyChart.png)
 
 ### Hourly Chart Details
 
+### Hour Details Modal
+
+This modal provides detailed information about energy consumption for each Charge Point (CP) at a specific hour. Users can:
+
+- **Select an Hour**: A dropdown allows users to choose a specific hour of the day.
+- **View Energy Consumption**: Displays the energy consumption (in kW) for each CP during the selected hour.
+
 ![Hourly Chart Details](./public/appPreview/HourlyChartDetails.png)
 
-### Filter Charge Points
+### Filter Charge Points Modal
+
+This modal enables users to activate or deactivate individual Charge Points (CPs). Features include:
+
+- **Interactive Buttons**: Each CP is represented by a button showing its current status (`Activated` or `Not Activated`).
+- **Dynamic Updates**: Clicking on a button toggles the CP's status, updating its availability in the simulation.
 
 ![Filter Charge Points](./public/appPreview/FilterCP.png)
 
