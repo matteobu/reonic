@@ -6,7 +6,11 @@ This project is a frontend application designed to simulate the charging of elec
 
 - **Simulation Parameters**: Configure the number of charging points, arrival probability of cars, car consumption (in kWh), and charging power per charging point (in kW).
 - **Dynamic Data Generation**: Simulate charging events based on user inputs.
-- **Responsive Design**: Optimized for various screen sizes using Tailwind CSS.
+- **Responsive Design**: Optimized for various screen sizes using Tailwind CSS:
+  - Wide Screen;
+  - MacBook Pro 13";
+  - iPad Pro;
+  - iPhone 14 Pro Max.
 - **Translation**: Supporting English, German and Italian languages.
 
 ## Technologies Used
@@ -96,7 +100,35 @@ The **SideBar** contains:
 
 ![Landing Page](./public/appPreview/LandingPage.png)
 
-### Input For Simulation
+### Input for Simulation
+
+The **Input Form** allows users to configure the parameters for the simulation. It includes four main inputs:
+
+- **Charge Points**: A value between `1` and `20`.
+- **Charging Power**: A value between `1` and `11` (kW).
+- **Arrival Probability Multiplier**: A percentage between `20%` and `200%`.
+- **Car Consumption**: A value between `12.0` and `40.0` (kWh).
+
+If any input value falls outside the predefined range, an error message will be displayed in the form, such as:
+
+- `Car Consumption must be between 12.0 and 40.0 kWh`.
+
+The **Submit Button** becomes enabled only when all inputs meet the required conditions (i.e., all values are within the valid ranges).
+
+### Additional Customization
+
+The form includes two buttons: `+` and `-`. These allow users to add or remove configurations for multiple Charge Points (CPs). Users can customize configurations, such as:
+
+- `5 CPs × 10 kW + 3 CPs × 5 kW + 1 CP × 30 kW`.
+
+### Limits and Constraints
+
+The customization is subject to the following limits:
+
+1. **Maximum Charge Points (CPs)**: The total number of CPs cannot exceed `20`.
+2. **Maximum Total Charging Power**: The combined charging power cannot exceed `220 kW`.
+
+This ensures the simulation remains within realistic and manageable bounds.
 
 ![InputForSimulation](./public/appPreview/InputForSimulation.png)
 
