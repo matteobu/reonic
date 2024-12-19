@@ -9,12 +9,19 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white px-4 py-2 shadow-md border-b-2">
       <div className="flex justify-between items-center">
-        <div className="flex items-center justify-start">
-          <img src="/logo.png" alt="Logo" className="h-7 w-7" />
-          <h1 className="text-lg font-semibold text-gray-700 ml-2 hidden md:block">
-            {t('header.title')}
-          </h1>
-        </div>
+        <a
+          href="https://reonic.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
+        >
+          <div className="flex items-center justify-start">
+            <img src="/logo.png" alt="Logo" className="h-7 w-7" />
+            <h1 className="text-lg font-semibold text-gray-700 ml-2 hidden md:block">
+              {t('header.title')}
+            </h1>
+          </div>
+        </a>
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           <a
