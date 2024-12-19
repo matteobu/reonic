@@ -75,4 +75,25 @@ This project was developed as part of a frontend task for Reonic.
 
 ## Web App Preview
 
-![App Preview](./public/appPreview/LandingPage.png)
+## Landing Page
+
+This is the landing page displayed when `npm start` is run.
+
+### HeadBar
+
+The **HeadBar** features:
+
+- The application's name on the left.
+- A language selector and a link to the repository on the right.
+
+### SideBar
+
+The **SideBar** contains:
+
+- Four functional buttons, including the **InputForm** at the top.
+- Three icons linking to the main components:
+  - **Daily Chart**
+  - **Hourly Chart**
+  - **Consumption Heatmap**
+
+![Landing Page](./public/appPreview/LandingPage.png)
