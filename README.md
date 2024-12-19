@@ -104,10 +104,10 @@ The **SideBar** contains:
 
 The **Input Form** allows users to configure the parameters for the simulation. It includes four main inputs:
 
-- **Charge Points**: A value between `1` and `20`.
-- **Charging Power**: A value between `1` and `11` (kW).
-- **Arrival Probability Multiplier**: A percentage between `20%` and `200%`.
-- **Car Consumption**: A value between `12.0` and `40.0` (kWh).
+- **Charge Points**: A value between `1` and `20`, default is `20`.
+- **Charging Power**: A value between `1` and `11` (kW), default is `11`.
+- **Arrival Probability Multiplier**: A percentage between `20%` and `200%`, default is `100%`.
+- **Car Consumption**: A value between `12.0` and `40.0` (kWh), default is `18`.
 
 If any input value falls outside the predefined range, an error message will be displayed in the form, such as:
 
@@ -116,6 +116,8 @@ If any input value falls outside the predefined range, an error message will be 
 The **Submit Button** becomes enabled only when all inputs meet the required conditions (i.e., all values are within the valid ranges).
 
 ### Additional Customization
+
+![Add Remove Btn](./public/appPreview/addRemoveBtn.png)
 
 The form includes two buttons: `+` and `-`. These allow users to add or remove configurations for multiple Charge Points (CPs). Users can customize configurations, such as:
 

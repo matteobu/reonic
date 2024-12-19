@@ -67,6 +67,7 @@
     "carConsumption": "Car Consumption (kWh):",
     "chargePointConfig": "Charge Point Config",
     "submit": "Submit",
+    "addConfigLimit": "Cannot add more configurations",
     "errors": {
       "fixValidation": "Please fix the validation errors before submitting.",
       "totalChargePoints": "Total charge points ({{totalChargePoints}}) exceed the maximum allowed (20).",

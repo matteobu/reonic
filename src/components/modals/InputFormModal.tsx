@@ -176,13 +176,20 @@ const ChargingInputForm: React.FC = () => {
           {t('chargingInputForm.chargePointConfig')}
         </span>
         <div className="flex items-center gap-2">
-          <button
-            onClick={addConfiguration}
-            className="flex items-center justify-center text-sm font-medium border bg-slate-50 border-green-700 rounded text-gray-900 px-3 py-1 hover:bg-green-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={totalChargePoints >= 20 || configs.length >= 3}
-          >
-            <FiPlus size={14} />
-          </button>
+          <div className="relative group">
+            <button
+              onClick={addConfiguration}
+              className="flex items-center justify-center text-sm font-medium border bg-slate-50 border-green-700 rounded text-gray-900 px-3 py-1 hover:bg-green-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={totalChargePoints >= 20 || configs.length >= 3}
+            >
+              <FiPlus size={14} />
+            </button>
+            {(totalChargePoints >= 20 || configs.length >= 3) && (
+              <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-700 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                {t('chargingInputForm.addConfigLimit')}
+              </div>
+            )}
+          </div>
           <button
             onClick={removeConfiguration}
             className="flex items-center justify-center text-sm font-medium border bg-slate-50 border-red-700 rounded text-gray-900 px-3 py-1 hover:bg-red-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
