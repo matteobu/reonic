@@ -1,16 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-interface SummaryData {
-  title: string;
-  energy?: string;
-  events?: string;
-  extraContent?: string;
-}
-
-interface SummaryBoxGridProps {
-  summaryData: SummaryData[];
-}
+import { SummaryBoxGridProps } from '../../interfaces';
 
 const SummaryBoxGrid: React.FC<SummaryBoxGridProps> = ({ summaryData }) => {
   const { t } = useTranslation();

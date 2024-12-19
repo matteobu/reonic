@@ -57,9 +57,8 @@ const ConsumptionTable: React.FC = () => {
           {aggregatedDailyEnergyEvents.map((entry) => (
             <div
               key={entry.day}
-              className={`w-6 h-6 rounded ${getColor(
-                entry.totalEnergy
-              )} cursor-pointer`}
+              className={`cursor-pointer rounded ${getColor(entry.totalEnergy)} 
+              w-6 h-6 lg-max:w-4 lg-max:h-4 mid:w-3 mid:h-3`}
               onMouseEnter={(e) =>
                 handleMouseEnter(
                   e,
@@ -79,9 +78,8 @@ const ConsumptionTable: React.FC = () => {
           {aggregatedDailyEnergyEvents.map((entry) => (
             <div
               key={entry.day}
-              className={`w-6 h-6 rounded ${getColor(
-                entry.totalEvents
-              )} cursor-pointer`}
+              className={`cursor-pointer rounded ${getColor(entry.totalEvents)} 
+              w-6 h-6 lg-max:w-4 lg-max:h-4 mid:w-3 mid:h-3`}
               onMouseEnter={(e) =>
                 handleMouseEnter(
                   e,

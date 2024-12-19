@@ -70,6 +70,10 @@ interface SummaryData {
   extraContent?: string;
 }
 
+interface SummaryBoxGridProps {
+  summaryData: SummaryData[];
+}
+
 type DailyDataKeys = 'BULK' | 'FLOATING' | 'ABS';
 
 // Hourly Chart
@@ -97,4 +101,5 @@ export type {
   TotalEnergyChartProps,
   ConsumptionDailyData,
   SummaryData,
+  SummaryBoxGridProps,
 };
