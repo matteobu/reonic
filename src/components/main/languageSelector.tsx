@@ -15,9 +15,9 @@ const LanguageSelector: React.FC = () => {
         defaultValue={i18n.language}
         className="appearance-none bg-transparent text-lg cursor-pointer outline-none"
       >
-        <option value="en">🫖</option>
-        <option value="de">🥨</option>
-        <option value="it">🍕</option>
+        <option value="en">🇬🇧</option>
+        <option value="de">🇩🇪</option>
+        <option value="it">🇮🇹</option>
       </select>
     </div>
   );

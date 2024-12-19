@@ -7,7 +7,7 @@ This project is a frontend application designed to simulate the charging of elec
 - **Simulation Parameters**: Configure the number of charging points, arrival probability of cars, car consumption (in kWh), and charging power per charging point (in kW).
 - **Dynamic Data Generation**: Simulate charging events based on user inputs.
 - **Responsive Design**: Optimized for various screen sizes using Tailwind CSS.
-- **Translation**: Supporting English 🫖, German 🥨 and Italian 🍕 languages.
+- **Translation**: Supporting English, German and Italian languages.
 
 ## Technologies Used
 
