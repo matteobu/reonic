@@ -97,3 +97,6 @@ The **SideBar** contains:
   - **Consumption Heatmap**
 
 ![Landing Page](./public/appPreview/LandingPage.png)
+![Tooltip](./public/appPreview/DailyTooltip.png)
+![Languages](./public/appPreview/Languages.png)
+![Total Energy Pie](./public/appPreview/TotalEnergyPie.png)
