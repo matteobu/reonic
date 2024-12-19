@@ -1,4 +1,3 @@
-
 # Reonic Simulation Test
 
 This project is a frontend application designed to simulate the charging of electric cars in a shop parking lot. Users can input various parameters to observe how different configurations affect the charging process.
@@ -13,7 +12,6 @@ This project is a frontend application designed to simulate the charging of elec
 
 - **React**: A JavaScript library for building user interfaces.
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
-- **Vite**: A build tool that provides a faster and leaner development experience for modern web projects.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 
 ## Getting Started
@@ -37,13 +35,22 @@ Follow these steps to set up the project locally:
    Ensure you have [Yarn](https://yarnpkg.com/) installed. Then, run:
 
    ```bash
-   yarn install
+   npm install
    ```
 
-4. **Start the development server**:
+4. **Create the mocked data**:
 
    ```bash
-   yarn dev
+   cd src/mocks
+   node generateData.mjs
+   ```
+
+   The application should now have the mocked data in the folder `src/mocks`.
+
+5. **Start the development server**:
+
+   ```bash
+   npm start
    ```
 
    The application should now be running at `http://localhost:3000`.
@@ -51,13 +58,11 @@ Follow these steps to set up the project locally:
 ## Usage
 
 1. **Configure Simulation Parameters**: Adjust the input fields to set the number of charging points, arrival probability, car consumption, and charging power.
-2. **Run Simulation**: Click the "Simulate" button to generate and display the simulation results.
-3. **View Results**: Analyze the output, including total energy charged, number of charging events, and heatmaps of consumed energy.
+2. **View Results**: Analyze the output, including total energy charged, number of charging events, and heatmaps of consumed energy.
 
 ## Assumptions
 
 - Each car requires a charging duration proportional to its consumption and the charging power of the station.
-- The simulation considers a fixed number of days (e.g., 30) for generating data.
 
 ## License
 
