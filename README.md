@@ -198,4 +198,25 @@ This modal enables users to activate or deactivate individual Charge Points (CPs
 
 ### Consumption Heatmap
 
+This page provides a visual overview of energy consumption and events over time, accompanied by a summary of key metrics.
+
+#### **Heatmap**
+
+- **Total Energy Heatmap**: Displays energy consumption using a color-coded grid, where each square represents a day and colors indicate consumption levels (e.g., red for high, green for moderate, yellow for low).
+- **Total Events Heatmap**: Visualizes the number of charging events per day using a blue gradient grid, with darker shades representing higher event counts.
+
+#### **Summary Metrics**
+
+The summary section at the bottom provides detailed aggregated metrics, including:
+
+- **Yearly Totals**: Total energy consumed and events over the year.
+- **Monthly, Weekly, and Daily Averages**: Average energy and events across these timeframes.
+- **Highest and Lowest Energy**:
+  - **Days**: Days with the highest and lowest total energy consumption.
+  - **Months**: Months with the highest and lowest total energy consumption.
+  - **Weeks**: Weeks with the highest and lowest total energy consumption.
+- **Most and Least Events**: Days with the highest and lowest number of charging events.
+
+This page helps users quickly identify trends and patterns in energy consumption and charging activity.
+
 ![Consumption Heatmap](./public/appPreview/ConsumptionHeatMap.png)
