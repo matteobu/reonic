@@ -97,6 +97,35 @@ The **SideBar** contains:
   - **Consumption Heatmap**
 
 ![Landing Page](./public/appPreview/LandingPage.png)
+
+### Input For Simulation
+
+![InputForSimulation](./public/appPreview/InputForSimulation.png)
+
+### Daily Tooltip
+
 ![Tooltip](./public/appPreview/DailyTooltip.png)
+
+### Languages
+
 ![Languages](./public/appPreview/Languages.png)
+
+### Total Energy Pie
+
 ![Total Energy Pie](./public/appPreview/TotalEnergyPie.png)
+
+### Hourly Chart
+
+![Hourly Chart](./public/appPreview/HourlyChart.png)
+
+### Hourly Chart Details
+
+![Hourly Chart Details](./public/appPreview/HourlyChartDetails.png)
+
+### Filter Charge Points
+
+![Filter Charge Points](./public/appPreview/FilterCP.png)
+
+### Consumption Heatmap
+
+![Consumption Heatmap](./public/appPreview/ConsumptionHeatMap.png)
