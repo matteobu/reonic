@@ -112,8 +112,10 @@ The **Input Form** allows users to configure the parameters for the simulation. 
 If any input value falls outside the predefined range, an error message will be displayed in the form, such as:
 
 - `Car Consumption must be between 12.0 and 40.0 kWh`.
+  ![Error Example](./public/appPreview/errorExample.png)
 
 The **Submit Button** becomes enabled only when all inputs meet the required conditions (i.e., all values are within the valid ranges).
+![Submit Disabled](./public/appPreview/generalErrorSubmit.png)
 
 ### Additional Customization
 
