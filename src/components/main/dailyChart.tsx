@@ -75,6 +75,7 @@ const DailyChart: React.FC = () => {
     <div className="flex flex-col w-full h-full ">
       <ComponentHeader
         name={t('dailyChart.title')}
+        shortName={t('dailyChart.short')} 
         onDateChange={handleDateChange}
         isOnDateChange={true}
       />

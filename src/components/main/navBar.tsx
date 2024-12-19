@@ -3,6 +3,7 @@ import { NavBarProps } from '../../interfaces';
 
 const NavBar: React.FC<NavBarProps> = ({
   name,
+  shortName,
   onDateChange,
   isOnDateChange,
   children,
@@ -35,7 +36,7 @@ const NavBar: React.FC<NavBarProps> = ({
         {name}
       </h1>
       <h1 className="text-sm font-semibold text-gray-700 block md:hidden">
-        {'test'}
+        {shortName}
       </h1>
       {isOnDateChange && (
         <div className="flex items-center space-x-4">

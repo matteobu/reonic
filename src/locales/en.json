@@ -3,10 +3,10 @@
     "title": "REONIC SIMULATION TEST",
     "githubLinkTooltip": "Visit GitHub Repository"
   },
-  "componentHeader": {
-    "name": "Consumption Heatmap"
-  },
+
   "consumptionTable": {
+    "title": "Consumption Heatmap",
+    "short": "Heatmap",
     "totalEnergy": "Total Energy",
     "totalEvents": "Total Events",
     "tooltipDay": "Day",
@@ -34,6 +34,7 @@
   },
   "dailyChart": {
     "title": "Daily Charging Chart",
+    "short": "Daily Chart",
     "yAxisLabel": "kW",
     "aggregateMetrics": "Aggregate Metrics",
     "errorLogs": "Error Logs",
@@ -54,8 +55,13 @@
   },
   "hourlyChart": {
     "title": "Hourly Chart",
+    "short": "Hourly",
     "hourDetails": "Show Hour Details",
-    "filterCP": "Filter Charge Points"
+    "filterCP": "Filter Charge Points",
+    "s": {
+      "hourDetails": "Details",
+      "filterCP": "Filter"
+    }
   },
   "chargePointConfigRow": {
     "points": "Charge Points:",

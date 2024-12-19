@@ -3,10 +3,9 @@
     "title": "REONIC SIMULATIONSTEST",
     "githubLinkTooltip": "Besuchen Sie das GitHub-Repository"
   },
-  "componentHeader": {
-    "name": "Verbrauchs-Heatmap"
-  },
   "consumptionTable": {
+    "title": "Verbrauchs-Heatmap",
+    "short": "Heatmap",
     "totalEnergy": "Gesamtenergie",
     "totalEvents": "Gesamtveranstaltungen",
     "tooltipDay": "Tag",
@@ -34,6 +33,7 @@
   },
   "dailyChart": {
     "title": "Tägliches Lade-Diagramm",
+    "short": "Tägliches",
     "yAxisLabel": "kW",
     "aggregateMetrics": "Aggregierte Metriken",
     "errorLogs": "Fehlerprotokolle",
@@ -54,8 +54,13 @@
   },
   "hourlyChart": {
     "title": "Stündliches Diagramm",
+    "short": "Stunden",
     "hourDetails": "Stundendetails anzeigen",
-    "filterCP": "Ladepunkte filtern"
+    "filterCP": "Ladepunkte filtern",
+    "s": {
+      "hourDetails": "Details",
+      "filterCP": "Filtern"
+    }
   },
   "chargePointConfigRow": {
     "points": "Ladepunkte:",

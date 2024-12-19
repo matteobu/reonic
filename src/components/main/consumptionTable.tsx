@@ -43,14 +43,15 @@ const ConsumptionTable: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full">
       <ComponentHeader
-        name={t('componentHeader.name')} 
+        name={t('consumptionTable.title')}
+        shortName={t('consumptionTable.short')}
         onDateChange={handleDateChange}
         isOnDateChange={false}
       />
 
       <div className="h-full bg-gray-100 p-4 m-2 shadow-md border border-gray-300 rounded-lg flex flex-col relative">
         <h3 className="text-center text-md font-medium mb-2">
-          {t('consumptionTable.totalEnergy')} 
+          {t('consumptionTable.totalEnergy')}
         </h3>
         <div className="flex flex-wrap gap-1 mb-4">
           {aggregatedDailyEnergyEvents.map((entry) => (
@@ -72,7 +73,7 @@ const ConsumptionTable: React.FC = () => {
           ))}
         </div>
         <h3 className="text-center text-md font-medium mb-2">
-          {t('consumptionTable.totalEvents')} 
+          {t('consumptionTable.totalEvents')}
         </h3>
         <div className="flex flex-wrap gap-1">
           {aggregatedDailyEnergyEvents.map((entry) => (

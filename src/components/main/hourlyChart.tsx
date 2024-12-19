@@ -83,6 +83,7 @@ const HourlyChargingChart: React.FC = () => {
     <div className="flex flex-col w-full h-full">
       <ComponentHeader
         name={t('hourlyChart.title')}
+        shortName={t('hourlyChart.short')}
         onDateChange={handleDateChange}
         isOnDateChange={true}
       >
@@ -91,13 +92,21 @@ const HourlyChargingChart: React.FC = () => {
             onClick={() => setShowHourModal(true)}
             className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
-            {t('hourlyChart.hourDetails')}
+            <span className="hidden md:block">
+              {t('hourlyChart.hourDetails')}
+            </span>
+            <span className="block md:hidden">
+              {t('hourlyChart.s.hourDetails')}
+            </span>
           </button>
           <button
             onClick={() => setShowFilterModal(true)}
             className="ml-2 px-3 h-7 bg-gray-50 text-gray-600 rounded-md border border-gray-300 shadow hover:bg-gray-100"
           >
-            {t('hourlyChart.filterCP')}
+            <span className="hidden md:block">{t('hourlyChart.filterCP')}</span>
+            <span className="block md:hidden">
+              {t('hourlyChart.s.filterCP')}
+            </span>
           </button>
         </>
       </ComponentHeader>
