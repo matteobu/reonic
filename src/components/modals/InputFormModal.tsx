@@ -8,12 +8,15 @@ import { useTranslation } from 'react-i18next';
 
 const ChargingInputForm: React.FC = () => {
   const { t } = useTranslation();
-  const { chargePoints, setData, toggleModal } = useData();
-  const [formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
+  const { chargePoints, formData, setData, toggleModal } = useData();
+  console.log(chargePoints, formData);
+  const [_formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
+  console.log(_formData);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [configs, setConfigs] = useState([
     { chargePoints: chargePoints, chargingPower: 11 },
   ]);
+  console.log({ configs });
   const isFormValid = !Object.values(errors).some((err) => err);
 
   const totalChargePoints = configs.reduce(
@@ -23,7 +26,7 @@ const ChargingInputForm: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ..._formData, [name]: value });
   };
 
   const handleConfigChange = (
@@ -96,7 +99,7 @@ const ChargingInputForm: React.FC = () => {
       return;
     }
 
-    setData(totalChargePoints);
+    setData({ cp: totalChargePoints, formData: _formData, configs });
     toggleModal();
   };
 
@@ -130,7 +133,7 @@ const ChargingInputForm: React.FC = () => {
           name="arrivalProbability"
           min="20"
           max="200"
-          value={formData.arrivalProbability}
+          value={_formData.arrivalProbability}
           onChange={handleChange}
           onBlur={handleBlur}
           className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
@@ -158,7 +161,7 @@ const ChargingInputForm: React.FC = () => {
           min="12.0"
           max="40.0"
           step="0.5"
-          value={formData.carConsumption}
+          value={_formData.carConsumption}
           onChange={handleChange}
           onBlur={handleBlur}
           className={`w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400 ${
