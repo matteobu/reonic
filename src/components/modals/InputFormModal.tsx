@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DEFAULT_INPUT_VALUES } from '../../utils/constants';
 import { validateForm } from '../../utils/utils';
 import { useData } from '../../context/DataContext';
@@ -8,17 +8,30 @@ import { useTranslation } from 'react-i18next';
 
 const ChargingInputForm: React.FC = () => {
   const { t } = useTranslation();
-  const { chargePoints, formData, setData, toggleModal } = useData();
-  console.log(chargePoints, formData);
+  const {
+    chargePoints,
+    formData,
+    configs: contextConfigs,
+    setData,
+    toggleModal,
+  } = useData();
+
   const [_formData, setFormData] = useState(DEFAULT_INPUT_VALUES);
-  console.log(_formData);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [configs, setConfigs] = useState([
-    { chargePoints: chargePoints, chargingPower: 11 },
+    { chargePoints: 1, chargingPower: 11 },
   ]);
-  console.log({ configs });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const isFormValid = !Object.values(errors).some((err) => err);
 
+  useEffect(() => {
+    setFormData(formData || DEFAULT_INPUT_VALUES);
+
+    setConfigs(
+      contextConfigs && contextConfigs.length > 0
+        ? contextConfigs
+        : [{ chargePoints: chargePoints || 1, chargingPower: 11 }]
+    );
+  }, [formData, chargePoints, contextConfigs]);
   const totalChargePoints = configs.reduce(
     (total, config) => total + (config.chargePoints || 0),
     0
